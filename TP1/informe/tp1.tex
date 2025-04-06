@@ -1,3 +1,4 @@
+
 \documentclass[]{informeutn}
 
 \usepackage{circuitikz}
@@ -7,7 +8,7 @@
 % Datos del informe
 \materia{Dispositivos Electrónicos}
 \titulo{Trabajo Práctico 1}
-\autores{Cabaleiro Martin\\Cortesini Luciano\\Ernst Pedro}
+\autores{Cabaleiro Martin 404821\\Cortesini Luciano 402719\\Ernst Pedro 400624}
 \fecha{8 / 4 / 2025}
 
 \begin{document}
@@ -98,11 +99,6 @@ Conociendo las caidas de tension en las resistencias $R_2$y$R_3$. Podemos calcul
   \vspace*{1pt}
 \end{minipage}
 
-\section{Simulación}
-Simulación del circuito en el software LTSpice, con el modo operating point.
-\includegraphics[width=1\textwidth]{imagenes/simulacion_CC.png}\par
-
-
 %Para finalizar, podemos comprobar que estos cálculos satisfacen la ley de Kirchhoff de las corrientes.
 %
 %$$I_1 - I_2 - I_3 = 0$$
@@ -113,24 +109,26 @@ Simulación del circuito en el software LTSpice, con el modo operating point.
 
 \begin{table}[H]
   \centering
-  \renewcommand{\arraystretch}{1.7}
+  \renewcommand{\arraystretch}{1.5}
+  \resizebox{\textwidth}{!}{
   \begin{tabular}{|c|c|c|c|c|c|}
     \hline
     \multicolumn{2}{|c|}{} & \textbf{$V_s$} & \textbf{$R_1$} & \textbf{$R_2$} & \textbf{$R_3$} \\
     \hline
-    \multirow{3}{*}{Tension} & Análisis   &                 &                &                &                \\
+    \multirow{3}{*}{Tension[V]} & Análisis   &        10         &         8,346       &      1,623          &       1,623         \\
     \cline{2-6}
-                             & Simulación &                 &                &                &                \\
+                             & Simulación &        10         &        8,34        &        1,623        &        1,623        \\
     \cline{2-6}
-                             & Medición   &                 &                &                &                \\
+                             & Medición   &      9,97           &          8,34      &       1,61         &        1,62        \\
     \hline
-    \multirow{3}{*}{Corriente} & Análisis   &               &                &                &                \\
+    \multirow{3}{*}{Corriente[$\mu$A]} & Análisis   &      837,661         &        837,661        &       345,402         &         497,936       \\
     \cline{2-6}
-                               & Simulación &               &                &                &                \\
+                               & Simulación &      837,609         &   837,609             &      345,514          &        492,095        \\
     \cline{2-6}
-                               & Medición   &               &                &                &                \\
+                               & Medición   &      828         &         827       &        346        &           475     \\
     \hline
   \end{tabular}
+  }
 \end{table}
 
 \chapter{Conclusión}
@@ -154,6 +152,23 @@ Simulación del circuito en el software LTSpice, con el modo operating point.
    \textbf{Total} & & \textbf{100 \%} \\
    \hline
   \end{tabular}
+\end{table}
+
+\section{Planilla de seguimiento}
+
+\begin{table}[H]
+    \centering
+    \footnotesize
+    \renewcommand{\arraystretch}{2}
+    \resizebox{\textwidth}{!}{
+        \begin{tabular}{|c|c|c|p{4cm}|c|c|c|c|}
+            \hline
+            \textbf{Version del TP} & \textbf{Fecha de inicio} & \textbf{Revisado por} & \textbf{Resumen Observaciones/Correcciones/propuestas} & \textbf{Fecha de retroalimentacion enviada} & \textbf{Cambios realizados por JTP(si/no)} & \textbf{Fecha de entrega de version corregida} &   \textbf{Aprobado por jefe de catedra (si/no)} \\
+            \hline
+            1.0(2025) & & & & & & & SI & \\
+            \hline
+        \end{tabular}
+    }
 \end{table}
 
 \end{document}
