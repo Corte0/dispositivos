@@ -1,5 +1,8 @@
 \documentclass[]{informeutn}
-% \documentclass[chaptersright]{informeutn} % los capitulos empiezan siempre en pagina impar
+
+\usepackage{circuitikz}
+\usepackage{colortbl}
+\usepackage{multirow}
 
 % Datos del informe
 \materia{Dispositivos Electrónicos}
@@ -15,8 +18,83 @@
 \setcounter{page}{1}
 \thispagestyle{plain}
 
-\chapter{Ejercicio 1}
-Contenido...
+\chapter{Introducción}
+
+En este trabajo práctico de laboratorio se estudiará el comportamiento de un circuito resistivo frente a señales continuas y alternas.
+
+Para ello, en primer lugar se plantea el circuito y se analiza de forma analítica utilizando las leyes de Kirchhoff (ley de nodos y
+ley de mallas), la ley de Ohm y el cálculo de resistencias equivalentes. Luego, se realizará una simulación del circuito mediante el
+software LTSpice con el objetivo de verificar los resultados obtenidos teóricamente.
+
+Finalmente, el circuito se implementará físicamente sobre una placa protoboard, y se llevarán a cabo mediciones de tensiones y corrientes
+Para las señales continuas se utilizará un multímetro, mientras que para las señales alternas se utilizará un osciloscopio.
+
+El objetivo principal de este trabajo es comparar los resultados teóricos, simulados y experimentales, analizar el comportamiento 
+del circuito resistivo ante diferentes tipos de señal, y practicar el uso de los instrumentos y elementos disponibles en el laboratorio.
+
+\chapter{Análisis del circuito}
+
+\begin{center}
+  \begin{circuitikz} [scale=1, transform shape]
+    \draw  (0,0) to[battery, invert, l=$Vs$] (0,3)
+        to[R, l=$R_1$,] (3,3) node[circ]{}
+        to[R, l=$R_2$] (3,0);
+    \draw (3,3) to[short] (5,3)
+        to[R, l=$R_3$] (5,0)
+        to[short] (3,0) node[circ]{}
+        to[short] (0,0);
+    \draw[->, thin] (1,2.5) -- (2,2.5) node[pos=0.5, below] {$I_1$};
+    \draw[->, thin] (2.5,2) -- (2.5,1) node[pos=0.5, left] {$I_2$};
+    \draw[->, thin] (4.5,2) -- (4.5,1) node[pos=0.5, left] {$I_3$};
+  \end{circuitikz}
+\end{center}
+
+\chapter{Implementación y mediciones}
+
+\begin{table}[H]
+  \centering
+  \renewcommand{\arraystretch}{1.7}
+  \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    \multicolumn{2}{|c|}{} & \textbf{$V_s$} & \textbf{$R_1$} & \textbf{$R_2$} & \textbf{$R_3$} \\
+    \hline
+    \multirow{3}{*}{Tension} & Análisis   &                 &                &                &                \\
+    \cline{2-6}
+                             & Simulación &                 &                &                &                \\
+    \cline{2-6}
+                             & Medición   &                 &                &                &                \\
+    \hline
+    \multirow{3}{*}{Corriente} & Análisis   &               &                &                &                \\
+    \cline{2-6}
+                               & Simulación &               &                &                &                \\
+    \cline{2-6}
+                               & Medición   &               &                &                &                \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\chapter{Conclusión}
+
+\section{Rúbrica}
+
+\begin{table}[H]
+  \centering
+  \renewcommand{\arraystretch}{1.7}
+  \begin{tabular}{|c|c|c|}
+    \hline
+   \rowcolor[gray]{0.8}
+   \textbf{Tarea} & \textbf{Puntuación} & \textbf{Máximo} \\
+   \hline
+   Presentación del informe & & 30 \% \\
+   \hline
+   Explicación del proceso de medición & & 40 \% \\
+   \hline
+   Defensa de las conclusiones & & 30 \% \\
+   \hline
+   \textbf{Total} & & \textbf{100 \%} \\
+   \hline
+  \end{tabular}
+\end{table}
 
 \end{document}
 
