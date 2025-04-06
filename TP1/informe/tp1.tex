@@ -31,7 +31,7 @@ utilizará un multímetro, mientras que para las señales alternas se utilizará
 El objetivo principal de este trabajo es comparar los resultados teóricos, simulados y experimentales, analizar el comportamiento 
 del circuito resistivo ante diferentes tipos de señal, y practicar el uso de los instrumentos y elementos disponibles en el laboratorio.
 
-\chapter{Análisis y simulación del circuito}
+\chapter{Análisis y simulación del circuito en CC}
 
 El circuito a analizar es:
 
@@ -104,34 +104,139 @@ Conociendo las caidas de tension en las resistencias $R_2$y$R_3$. Podemos calcul
 %$$I_1 = - I_2 + I_3$$
 %$$837,661\uA = 345,402\uA + 497,936\uA$$
 
-\section{Simulacion}
-Simulacion del ciruito en software de simulacion LTspice, en el modo operating point.
-\includegraphics[width=1\textwidth]{imagenes/simulacion_CC.png}\par
+\section{Simulación}
+Simulación del circuito en el software LTSpice, con el modo operating point.
 
-\chapter{Implementación y mediciones}
+\vspace{5pt}
+\includegraphics[width=0.95\textwidth]{imagenes/simulacion_CC.png}\par
+\vspace{5pt}
+
+Estos resultados confirman nuestros cálculos analíticos, siendo las diferencias en las corrientes producto
+de los redondeos en los calculos previos.
+
+\section{Implementación y mediciones}
 
 \begin{table}[H]
   \centering
-  \renewcommand{\arraystretch}{1.5}
-  \resizebox{\textwidth}{!}{
   \begin{tabular}{|c|c|c|c|c|c|}
     \hline
     \multicolumn{2}{|c|}{} & \textbf{$V_s$} & \textbf{$R_1$} & \textbf{$R_2$} & \textbf{$R_3$} \\
     \hline
-    \multirow{3}{*}{Tension[V]} & Análisis   &        10         &         8,346       &      1,623          &       1,623         \\
+    \multirow{3}{*}{Tension[V]}
+    & Análisis & 10 & 8,346 & 1,623 & 1,623 \\
     \cline{2-6}
-                             & Simulación &        10         &        8,34        &        1,623        &        1,623        \\
+    & Simulación & 10 & 8,34 & 1,623 & 1,623 \\
     \cline{2-6}
-                             & Medición   &      9,97           &          8,34      &       1,61         &        1,62        \\
+    & Medición  & 9,97  & 8,34 & 1,61 & 1,62 \\
     \hline
-    \multirow{3}{*}{Corriente[$\mu$A]} & Análisis   &      837,661         &        837,661        &       345,402         &         497,936       \\
+    \multirow{3}{*}{Corriente[$\mu$A]}
+    & Análisis & 837,661 & 837,661 & 345,402 & 497,936 \\
     \cline{2-6}
-                               & Simulación &      837,609         &   837,609             &      345,514          &        492,095        \\
+    & Simulación & 837,609 & 837,609 & 345,514 & 492,095 \\
     \cline{2-6}
-                               & Medición   &      828         &         827       &        346        &           475     \\
+    & Medición & 828 & 827 & 346 & 475 \\
     \hline
   \end{tabular}
-  }
+\end{table}
+
+\chapter{Análisis y simulación del circuito en CA}
+
+El circuito a analizar es:
+
+\begin{minipage}[t][4.25cm][c]{0.5\textwidth}
+  \begin{circuitikz} [scale=1, transform shape]
+    \draw  (0,0) to[sV, invert, l=$v_t$] (0,3)
+        to[R, l=$R_1$,] (3,3) node[circ]{}
+        to[R, l=$R_2$] (3,0);
+    \draw (3,3) to[short] (5,3)
+        to[R, l=$R_3$] (5,0)
+        to[short] (3,0) node[circ]{}
+        to[short] (0,0);
+    \draw[->, thin] (1,2.5) -- (2,2.5) node[pos=0.5, below] {$i_{1_t}$};
+    \draw[->, thin] (2.5,2) -- (2.5,1) node[pos=0.5, left] {$i_{2_t}$};
+    \draw[->, thin] (4.5,2) -- (4.5,1) node[pos=0.5, left] {$i_{3_t}$};
+  \end{circuitikz}
+\end{minipage}
+\begin{minipage}[t][5cm][c]{0.4\textwidth}
+  \begin{itemize}
+    \item $v_t = 5\V\,sin\left(2\pi\cdot50\Hz\cdot t\right)$
+    \item $R_1 = 10\kohm$
+    \item $R_2 = 4,7\kohm$
+    \item $R_3 = 3,3\kohm$
+  \end{itemize}
+\end{minipage}
+
+\section{Cálculo analítico}
+Empezamos calculando la resistencia equivalente del circuito.
+
+$$R_{eq} = R_1 + \left(R_2^{-1}+R_3^{-1}\right)^{-1}$$
+$$R_{eq} = 10\kohm + \left((4,7\kohm^{-1})+(3,3\kohm^{-1})\right)^{-1}$$
+$$R_{eq} = 11,938\kohm$$
+
+Conociendo $R_{eq}$ podemos calcular la corriente $I_1$ entregada por la fuente a travez de la ley de Ohm.
+
+$$i_{1_t}=\frac{V_s}{R_{eq}}$$
+$$i_{1_t}=\frac{10\V}{11,938\kohm}$$
+$$i_{1_t}=837,661\uA$$
+
+A travéz de la ley de Kirchhof de las tensiones, podemos calcular la caida de tensión de las resitencias $R_2$ y $R_3$
+
+$$V_s - V_{R_1} - V_{R_2} = 0$$
+$$V_s - I_1R_1 - V_{R_2} = 0$$
+$$V_{R_2} = V_s - I_1R_1$$
+$$V_{R_2} = 10\V - 837,661\uA \cdot 10\kohm$$
+$$V_{R_2} = 1,623\V$$
+
+Siendo $V_{R_2}=V_{R_3}$ por estar en paralelo.
+Conociendo las caidas de tension en las resistencias $R_2$y$R_3$. Podemos calcular la corriente que las atraviesa.
+
+\noindent
+\begin{minipage}[][][t]{0.5 \textwidth}
+  \vspace*{9pt}
+  $$I_2=\frac{V_{R_2}}{I_2}$$
+  $$I_2=\frac{1,623\V}{4,7\kohm}$$
+  $$I_2=345,402\uA$$
+  \vspace*{1pt}
+\end{minipage}
+\begin{minipage}[][][t]{0.5 \textwidth}
+  \vspace*{9pt}
+  $$I_3=\frac{V_{R_3}}{I_3}$$
+  $$I_3=\frac{1,623\V}{3,3\kohm}$$
+  $$I_3=497,936\uA$$
+  \vspace*{1pt}
+\end{minipage}
+
+\section{Simulación}
+Simulación del circuito en el software LTSpice, con el modo operating point.
+
+\vspace{5pt}
+\includegraphics[width=0.95\textwidth]{imagenes/simulacion_CC.png}\par
+\vspace{5pt}
+
+Estos resultados confirman nuestros cálculos analíticos, siendo las diferencias en las corrientes producto
+de los redondeos en los calculos previos.
+
+\section{Implementación y mediciones}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    \multicolumn{2}{|c|}{} & \textbf{$V_s$} & \textbf{$R_1$} & \textbf{$R_2$} & \textbf{$R_3$} \\
+    \hline
+    \multirow{3}{*}{Tension} & Análisis   &                 &                &                &                \\
+    \cline{2-6}
+                             & Simulación &                 &                &                &                \\
+    \cline{2-6}
+                             & Medición   &                 &                &                &                \\
+    \hline
+    \multirow{3}{*}{Corriente} & Análisis   &               &                &                &                \\
+    \cline{2-6}
+                               & Simulación &               &                &                &                \\
+    \cline{2-6}
+                               & Medición   &               &                &                &                \\
+    \hline
+  \end{tabular}
 \end{table}
 
 \chapter{Conclusión}
@@ -140,20 +245,19 @@ Simulacion del ciruito en software de simulacion LTspice, en el modo operating p
 
 \begin{table}[H]
   \centering
-  \renewcommand{\arraystretch}{1.7}
   \begin{tabular}{|c|c|c|}
     \hline
-   \rowcolor[gray]{0.8}
-   \textbf{Tarea} & \textbf{Puntuación} & \textbf{Máximo} \\
-   \hline
-   Presentación del informe & & 30 \% \\
-   \hline
-   Explicación del proceso de medición & & 40 \% \\
-   \hline
-   Defensa de las conclusiones & & 30 \% \\
-   \hline
-   \textbf{Total} & & \textbf{100 \%} \\
-   \hline
+    \rowcolor[gray]{0.8}
+    \textbf{Tarea} & \textbf{Puntuación} & \textbf{Máximo} \\
+    \hline
+    Presentación del informe & & 30 \% \\
+    \hline
+    Explicación del proceso de medición & & 40 \% \\
+    \hline
+    Defensa de las conclusiones & & 30 \% \\
+    \hline
+    \textbf{Total} & & \textbf{100 \%} \\
+    \hline
   \end{tabular}
 \end{table}
 
@@ -162,7 +266,6 @@ Simulacion del ciruito en software de simulacion LTspice, en el modo operating p
 \begin{table}[H]
     \centering
     \footnotesize
-    \renewcommand{\arraystretch}{2}
     \resizebox{\textwidth}{!}{
         \begin{tabular}{|c|c|c|p{4cm}|c|c|c|c|}
             \hline
