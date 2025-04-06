@@ -31,9 +31,11 @@ utilizará un multímetro, mientras que para las señales alternas se utilizará
 El objetivo principal de este trabajo es comparar los resultados teóricos, simulados y experimentales, analizar el comportamiento 
 del circuito resistivo ante diferentes tipos de señal, y practicar el uso de los instrumentos y elementos disponibles en el laboratorio.
 
-\chapter{Análisis del circuito}
+\chapter{Análisis y simulación del circuito}
 
-\begin{center}
+El circuito a analizar es:
+
+\begin{minipage}[t][4.25cm][c]{0.5\textwidth}
   \begin{circuitikz} [scale=1, transform shape]
     \draw  (0,0) to[battery, invert, l=$Vs$] (0,3)
         to[R, l=$R_1$,] (3,3) node[circ]{}
@@ -46,7 +48,61 @@ del circuito resistivo ante diferentes tipos de señal, y practicar el uso de lo
     \draw[->, thin] (2.5,2) -- (2.5,1) node[pos=0.5, left] {$I_2$};
     \draw[->, thin] (4.5,2) -- (4.5,1) node[pos=0.5, left] {$I_3$};
   \end{circuitikz}
-\end{center}
+\end{minipage}
+\begin{minipage}[t][5cm][c]{0.4\textwidth}
+  \begin{itemize}
+    \item $V_S = 10\V$
+    \item $R_1 = 10\kohm$
+    \item $R_2 = 4,7\kohm$
+    \item $R_3 = 3,3\kohm$
+  \end{itemize}
+\end{minipage}
+
+\section{Cálculo analítico}
+Empezamos calculando la resistencia equivalente del circuito.
+
+$$R_{eq} = R_1 + \left(R_2^{-1}+R_3^{-1}\right)^{-1}$$
+$$R_{eq} = 10\kohm + \left((4,7\kohm^{-1})+(3,3\kohm^{-1})\right)^{-1}$$
+$$R_{eq} = 11,938\kohm$$
+
+Conociendo $R_{eq}$ podemos calcular la corriente $I_1$ entregada por la fuente a travez de la ley de Ohm.
+
+$$I_1=\frac{V_s}{R_{eq}}$$
+$$I_1=\frac{10\V}{11,938\kohm}$$
+$$I_1=837,661\uA$$
+
+A travéz de la ley de Kirchhof de las tensiones, podemos calcular la caida de tensión de las resitencias $R_2$ y $R_3$
+
+$$V_s - V_{R_1} - V_{R_2} = 0$$
+$$V_s - I_1R_1 - V_{R_2} = 0$$
+$$V_{R_2} = V_s - I_1R_1$$
+$$V_{R_2} = 10\V - 837,661\uA \cdot 10\kohm$$
+$$V_{R_2} = 1,623\V$$
+
+Siendo $V_{R_2}=V_{R_3}$ por estar en paralelo.
+Conociendo las caidas de tension en las resistencias $R_2$y$R_3$. Podemos calcular la corriente que las atraviesa.
+
+\noindent
+\begin{minipage}[][][t]{0.5 \textwidth}
+  \vspace*{9pt}
+  $$I_2=\frac{V_{R_2}}{I_2}$$
+  $$I_2=\frac{1,623\V}{4,7\kohm}$$
+  $$I_2=345,402\uA$$
+  \vspace*{1pt}
+\end{minipage}
+\begin{minipage}[][][t]{0.5 \textwidth}
+  \vspace*{9pt}
+  $$I_3=\frac{V_{R_3}}{I_3}$$
+  $$I_3=\frac{1,623\V}{3,3\kohm}$$
+  $$I_3=497,936\uA$$
+  \vspace*{1pt}
+\end{minipage}
+
+%Para finalizar, podemos comprobar que estos cálculos satisfacen la ley de Kirchhoff de las corrientes.
+%
+%$$I_1 - I_2 - I_3 = 0$$
+%$$I_1 = - I_2 + I_3$$
+%$$837,661\uA = 345,402\uA + 497,936\uA$$
 
 \chapter{Implementación y mediciones}
 
