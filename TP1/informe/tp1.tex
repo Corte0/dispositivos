@@ -43,28 +43,31 @@ El circuito a analizar es:
 \newcommand{\Rb}{4.7\kohm}
 \newcommand{\Rc}{3.3\kohm}
 
-\begin{minipage}[t][4.25cm][c]{0.5\textwidth}
-  \begin{circuitikz} [scale=1, transform shape]
-    \draw  (0,0) to[battery, invert, l=$V_S$] (0,3)
-        to[R, l=$R_1$,] (3,3) node[circ]{}
-        to[R, l=$R_2$] (3,0);
-    \draw (3,3) to[short] (5,3)
-        to[R, l=$R_3$] (5,0)
-        to[short] (3,0) node[circ]{}
-        to[short] (0,0);
-    \draw[->, thin] (1,2.5) -- (2,2.5) node[pos=0.5, below] {$I_1$};
-    \draw[->, thin] (2.5,2) -- (2.5,1) node[pos=0.5, left] {$I_2$};
-    \draw[->, thin] (4.5,2) -- (4.5,1) node[pos=0.5, left] {$I_3$};
-  \end{circuitikz}
-\end{minipage}
-\begin{minipage}[t][5cm][c]{0.4\textwidth}
-  \begin{itemize}
-    \item $V_S = \VS$
-    \item $R_1 = \Ra$
-    \item $R_2 = \Rb$
-    \item $R_3 = \Rc$
-  \end{itemize}
-\end{minipage}
+\begin{figure}[h]
+  \begin{minipage}[t][4cm][c]{0.5\textwidth}
+    \begin{circuitikz} [scale=1, transform shape]
+      \draw  (0,0) to[battery, invert, l=$V_S$] (0,3)
+          to[R, l=$R_1$,] (3,3) node[circ]{}
+          to[R, l=$R_2$] (3,0);
+      \draw (3,3) to[short] (5,3)
+          to[R, l=$R_3$] (5,0)
+          to[short] (3,0) node[circ]{}
+          to[short] (0,0);
+      \draw[->, thin] (1,2.5) -- (2,2.5) node[pos=0.5, below] {$I_1$};
+      \draw[->, thin] (2.5,2) -- (2.5,1) node[pos=0.5, left] {$I_2$};
+      \draw[->, thin] (4.5,2) -- (4.5,1) node[pos=0.5, left] {$I_3$};
+    \end{circuitikz}
+  \end{minipage}
+  \begin{minipage}[t][4.5cm][c]{0.4\textwidth}
+    \begin{itemize}
+      \item $V_S = \VS$
+      \item $R_1 = \Ra$
+      \item $R_2 = \Rb$
+      \item $R_3 = \Rc$
+    \end{itemize}
+  \end{minipage}
+  \caption{Circuito}
+\end{figure}
 
 \section{Cálculo analítico}
 Empezamos calculando la resistencia equivalente del circuito.
@@ -102,7 +105,7 @@ $$V_{R_1} = \VS - \VRb$$
 $$V_{R_1} = \VRa$$
 
 Siendo $V_{R_2}=V_{R_3}$ por estar en paralelo.
-Conociendo las caidas de tensión en las resistencias $R_2$y$R_3$. se podrá calcular la corriente que las atraviesa.
+Conociendo las caidas de tensión en las resistencias $R_2$ y $R_3$. se podrá calcular la corriente que las atraviesa.
 
 \noindent
 \begin{minipage}[][][t]{0.5 \textwidth}
@@ -146,7 +149,7 @@ el circuito, como puede verse en la figura siguiente:
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\textwidth]{imagenes/foto_circuito.jpg}
+  \includegraphics[width=0.6\textwidth]{imagenes/foto_circuito.jpg}
   \caption{Implementación del circuito en la protoboard}
 \end{figure}
 
@@ -218,28 +221,31 @@ El circuito a analizar es:
 \newcommand{\freq}{50\Hz}
 \newcommand{\vph}{\,\sin\left(2\pi\cdot \freq \cdot t\right)}
 
-\begin{minipage}[t][4.25cm][c]{0.5\textwidth}
-  \begin{circuitikz} [scale=1, transform shape]
-    \draw  (0,0) to[sV, invert, l=$v_s$] (0,3)
-        to[R, l=$R_1$,] (3,3) node[circ]{}
-        to[R, l=$R_2$] (3,0);
-    \draw (3,3) to[short] (5,3)
-        to[R, l=$R_3$] (5,0)
-        to[short] (3,0) node[circ]{}
-        to[short] (0,0);
-    \draw[->, thin] (1,2.5) -- (2,2.5) node[pos=0.5, below] {$i_1$};
-    \draw[->, thin] (2.5,2) -- (2.5,1) node[pos=0.5, left] {$i_2$};
-    \draw[->, thin] (4.5,2) -- (4.5,1) node[pos=0.5, left] {$i_3$};
-  \end{circuitikz}
-\end{minipage}
-\begin{minipage}[t][5cm][c]{0.4\textwidth}
-  \begin{itemize}
-    \item $v_s = \vs\vph$
-    \item $R_1 = \Ra$
-    \item $R_2 = \Rb$
-    \item $R_3 = \Rc$
-  \end{itemize}
-\end{minipage}
+\begin{figure}[h]
+  \begin{minipage}[t][4cm][c]{0.5\textwidth}
+    \begin{circuitikz} [scale=1, transform shape]
+      \draw  (0,0) to[sV, invert, l=$v_s$] (0,3)
+          to[R, l=$R_1$,] (3,3) node[circ]{}
+          to[R, l=$R_2$] (3,0);
+      \draw (3,3) to[short] (5,3)
+          to[R, l=$R_3$] (5,0)
+          to[short] (3,0) node[circ]{}
+          to[short] (0,0);
+      \draw[->, thin] (1,2.5) -- (2,2.5) node[pos=0.5, below] {$i_1$};
+      \draw[->, thin] (2.5,2) -- (2.5,1) node[pos=0.5, left] {$i_2$};
+      \draw[->, thin] (4.5,2) -- (4.5,1) node[pos=0.5, left] {$i_3$};
+    \end{circuitikz}
+  \end{minipage}
+  \begin{minipage}[t][4.5cm][c]{0.4\textwidth}
+    \begin{itemize}
+      \item $v_s = \vs\vph$
+      \item $R_1 = \Ra$
+      \item $R_2 = \Rb$
+      \item $R_3 = \Rc$
+    \end{itemize}
+  \end{minipage}
+  \caption{Circuito}
+\end{figure}
 
 Nota: Se utilizan letras minúsculas para denotar señales que son funcion del tiempo.
 
@@ -284,52 +290,55 @@ $$v_{R_1} = \vRa\vph$$
 \end{minipage}
 
 \noindent
-\begin{minipage}[t][5cm][c]{0.5 \textwidth}
+\begin{figure}[H]
+  \begin{minipage}[t][5cm][c]{0.5 \textwidth}
+      \begin{tikzpicture}
+        \begin{axis}[
+            axis lines=middle,
+            xlabel={$t$ [ms]},
+            ylabel={[V]},
+            domain=0:40,
+            samples=200,
+            grid=both,
+            width=8.5cm,
+            height=7cm,
+            ymin=-6, ymax=6,
+            xmin=0, xmax=40,
+          ]
+          \addplot[blue, thick] {5*sin(deg(2*pi*50*(x)/1000))};
+          \addlegendentry{$v_s$}
+          \addplot[green, thick] {4.188*sin(deg(2*pi*50*(x)/1000))};
+          \addlegendentry{$v_{R_1}$}
+          \addplot[red, thick] {0.811694*sin(deg(2*pi*50*(x)/1000))};
+          \addlegendentry{$v_{R_2}$}
+        \end{axis}
+    \end{tikzpicture}
+  \end{minipage}
+  \begin{minipage}[t][5cm][c]{0.5 \textwidth}
     \begin{tikzpicture}
       \begin{axis}[
           axis lines=middle,
           xlabel={$t$ [ms]},
-          ylabel={[V]},
+          ylabel={[$\uA$]},
           domain=0:40,
           samples=200,
           grid=both,
           width=8.5cm,
           height=7cm,
-          ymin=-6, ymax=6,
+          ymin=-500, ymax=500,
           xmin=0, xmax=40,
         ]
-        \addplot[blue, thick] {5*sin(deg(2*pi*50*(x)/1000))};
-        \addlegendentry{$v_s$}
-        \addplot[green, thick] {4.188*sin(deg(2*pi*50*(x)/1000))};
-        \addlegendentry{$v_{R_1}$}
-        \addplot[red, thick] {0.811694*sin(deg(2*pi*50*(x)/1000))};
-        \addlegendentry{$v_{R_2}$}
+        \addplot[blue, thick] {418.831*sin(deg(2*pi*50*(x)/1000))};
+        \addlegendentry{$i_1$}
+        \addplot[red, thick] {172.701*sin(deg(2*pi*50*(x)/1000))};
+        \addlegendentry{$i_2$}
+        \addplot[green, thick] {245.968*sin(deg(2*pi*50*(x)/1000))};
+        \addlegendentry{$i_3$}
       \end{axis}
-  \end{tikzpicture}
-\end{minipage}
-\begin{minipage}[t][5cm][c]{0.5 \textwidth}
-  \begin{tikzpicture}
-    \begin{axis}[
-        axis lines=middle,
-        xlabel={$t$ [ms]},
-        ylabel={[$\uA$]},
-        domain=0:40,
-        samples=200,
-        grid=both,
-        width=8.5cm,
-        height=7cm,
-        ymin=-500, ymax=500,
-        xmin=0, xmax=40,
-      ]
-      \addplot[blue, thick] {418.831*sin(deg(2*pi*50*(x)/1000))};
-      \addlegendentry{$i_1$}
-      \addplot[red, thick] {172.701*sin(deg(2*pi*50*(x)/1000))};
-      \addlegendentry{$i_2$}
-      \addplot[green, thick] {245.968*sin(deg(2*pi*50*(x)/1000))};
-      \addlegendentry{$i_3$}
-    \end{axis}
-  \end{tikzpicture}
-\end{minipage}
+    \end{tikzpicture}
+  \end{minipage}
+  \caption{Gráfico de señales obtenidas analíticamente}
+\end{figure}
 
 \section{Simulación}
 Simulación del circuito en el software LTSpice, con el modo transient.
@@ -343,14 +352,16 @@ Simulación del circuito en el software LTSpice, con el modo transient.
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.7\textwidth]{imagenes/simulacion_CA_T.png}
-  \caption{Tensiones simuladas}
+  \caption{Gráfico de tensiones simuladas}
 \end{figure}
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.7\textwidth]{imagenes/simulacion_CA_C.png}
-  \caption{Corrientes simuladas}
+  \caption{Gráfico de corrientes simuladas}
 \end{figure}
 \vspace{5pt}
+
+Estos resultados coinciden con nuestro cálculo teórico.
 
 \section{Implementación y mediciones}
 
@@ -358,7 +369,7 @@ Se implementó el circuito cambiando la fuente de laboratorio por un generador d
 configurado para entregar una señal de $10V_{pp}$ y $50\Hz$. Se midieron las tensiones $v_s$
 y $v_{R_2}$ utilizando un osciloscopio analógico.
 
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
   \begin{minipage}[t]{0.48\textwidth}
     \centering
@@ -372,7 +383,7 @@ y $v_{R_2}$ utilizando un osciloscopio analógico.
   \caption{Medicion de la señal $v_s$, Con $2\ms/$div y $2\V/$div}
 \end{figure}
 
-\begin{figure}[h]
+\begin{figure}[H]
   \centering
   \begin{minipage}[t]{0.48\textwidth}
     \centering
@@ -385,6 +396,8 @@ y $v_{R_2}$ utilizando un osciloscopio analógico.
   \end{minipage}
   \caption{Medicion de la señal $v_{R_2}$, Con $2\ms/$div y $0.5\V/$div}
 \end{figure}
+
+Nuevamente, los resultados obtenidos son consistentes con el cálculo teórico y la simulación.
 
 \chapter{Conclusión}
 
@@ -448,6 +461,13 @@ Las diferencias observadas se encuentran dentro del margen de tolerancia permiti
 conjunto, los tres enfoques corroboran la validez del modelo teórico para describir el comportamiento del circuito
 resistivo, y demuestran el correcto uso de los instrumentos de medición y de la herramienta de simulación.
 
+\section{Instrumentos utilizados}
+\begin{itemize}
+  \item Tester UNI-T UT33A+
+  \item Fuente de laboratorio de la facultad, identificada como N2.
+  \item Osciloscopio Protek P-2520, identificado como O-117 en el laboratorio.
+  \item Generador de funciones Gwinstek SFG-2120, identificado como G-174 en el laboratorio.
+\end{itemize}
 
 \section{Rúbrica}
 
