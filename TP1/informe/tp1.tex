@@ -387,6 +387,37 @@ y $v_{R_2}$ utilizando un osciloscopio analógico.
 \end{figure}
 
 \chapter{Conclusión}
+
+\section{Analisis de potencia}
+La potencia disipada en cada uno de los resitores es:
+
+% VALORES CALCULADOS %
+\newcommand{\PRa}{6.991\mW}
+\newcommand{\PRb}{0.560\mW}
+\newcommand{\PRc}{0.808\mW}
+
+\begin{minipage}[t][][c]{0.3\textwidth}
+  $$P_{R_1} = V_{R_1}I_1$$
+  $$P_{R_1} = \VRa\cdot\Ia$$
+  $$P_{R_1} = \PRa$$
+\end{minipage}
+\hfill
+\begin{minipage}[t][][c]{0.3\textwidth}
+  $$P_{R_2} = V_{R_2}I_2$$
+  $$P_{R_2} = \VRb\cdot\Ib$$
+  $$P_{R_2} = \PRb$$
+\end{minipage}
+\hfill
+\begin{minipage}[t][][c]{0.3\textwidth}
+  $$P_{R_3} = V_{R_3}I_3$$
+  $$P_{R_3} = \VRc\cdot\Ic$$
+  $$P_{R_3} = \PRc$$
+\end{minipage}
+\vspace{0.5cm}
+
+Lo cual está muy por debajo de los $250\mW$ de potencia máxima. Por lo que incluso se podrian haber utilizado resistencias
+de $1/8\W$ sin ningún problema.
+
 \section{Análisis comparativo}
 
 Como pudimos obvservar en el desarollo del trabajo, existen ciertas diferencias y similitudes entre los datos obtenidos
@@ -404,18 +435,20 @@ En general, los tres métodos (análisis, simulación y medición) muestran resu
 3- Las mediciones también siguen la misma tendencia, confirmando el comportamiento previsto del circuito resistivo.
 
 \subsection*{Diferencias}
-Podemos atribuir aquellas diferencias en los datos obtenidos a la tensión suministrada por la fuente real $V_s$, que se
-midió en $9.99\V$ en lugar de los $10\V$ teóricos, aunque tambien dichas diferencias pueden atribuirse a las tolerancias en
-los valores reales de las resistencias utilizadas ó posibles errores de medición en la implementación del multímetro.
+Podemos atribuir aquellas diferencias en los datos obtenidos a que los componentes utilizados en el laboratorio no son ideales.
+La fuente no es exactamente de $10\V$, y ademas notamos que le costaba estabilizar el valor de tensión. Y los resitores utilizados
+tienen una tolerancia de $\pm5\percent$. Tambien, pudieron haberse agregado errores en la medicion con el multímetro.
 
-En la simulación, los valores son casi idénticos a los del análisis teórico, ya que el software utiliza los valores ideales
-de los componentes, sin considerar tolerancias ni pérdidas reales.
+En la simulación, los valores son casi idénticos a los del análisis teórico, principalmente por errores introducidos en los redondeos
+durante el desarrollo.
 
 \subsection*{Conclusión del análisis}
 
 Las diferencias observadas se encuentran dentro del margen de tolerancia permitido en un entorno de laboratorio. En
 conjunto, los tres enfoques corroboran la validez del modelo teórico para describir el comportamiento del circuito
 resistivo, y demuestran el correcto uso de los instrumentos de medición y de la herramienta de simulación.
+
+
 \section{Rúbrica}
 
 \begin{table}[H]
