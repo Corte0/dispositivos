@@ -82,13 +82,13 @@ $$R_{eq} = R_1 + \left(R_2^{-1}+R_3^{-1}\right)^{-1}$$
 $$R_{eq} = \Ra + \left((\Rb)^{-1}+(\Rc)^{-1}\right)^{-1}$$
 $$R_{eq} = \Req$$
 
-Conociendo $R_{eq}$ podemos calcular la corriente $I_1$ entregada por la fuente a travez de la ley de Ohm.
+Conociendo $R_{eq}$ podemos calcular la corriente $I_1$ entregada por la fuente a través de la ley de Ohm.
 
 $$I_1=\frac{V_s}{R_{eq}}$$
 $$I_1=\frac{\VS}{\Req}$$
 $$I_1= \Ia$$
 
-A travéz de la ley de Kirchhof de las tensiones, podemos calcular la caida de tensión de las resitencias.
+A través de la ley de Kirchhoff de las tensiones, podemos calcular la caída de tensión de las resistencias.
 
 $$V_s - V_{R_1} - V_{R_2} = 0$$
 $$V_s - I_1R_1 - V_{R_2} = 0$$
@@ -102,7 +102,7 @@ $$V_{R_1} = \VS - \VRb$$
 $$V_{R_1} = \VRa$$
 
 Siendo $V_{R_2}=V_{R_3}$ por estar en paralelo.
-Conociendo las caidas de tension en las resistencias $R_2$y$R_3$. Podemos calcular la corriente que las atraviesa.
+Conociendo las caidas de tensión en las resistencias $R_2$y$R_3$. se podrá calcular la corriente que las atraviesa.
 
 \noindent
 \begin{minipage}[][][t]{0.5 \textwidth}
@@ -136,12 +136,12 @@ Se simuló el circuito en el software LTSpice, con el modo operating point.
 \end{figure}
 \vspace{5pt}
 
-Estos resultados confirman nuestros cálculos analíticos, siendo las diferencias en las corrientes producto
-de los redondeos en los calculos previos.
+Estos resultados confirman nuestros cálculos analíticos, determinamos que aquellas diferencias en las corrientes son producto
+de los aproximaciones numéricas en los calculos previos.
 
 \section{Implementación y mediciones}
 
-Se implementó el circuito en una placa protoboard, utilizando resistencias de $1/4\W$, y una fuente de laboratorio para alimentar
+Se implementó el circuito en una placa del tipo protoboard, utilizando resistencias de $1/4\W$, y una fuente de laboratorio para alimentar
 el circuito, como puede verse en la figura siguiente:
 
 \begin{figure}[H]
@@ -176,7 +176,7 @@ Luego, se realizaron las mediciones pertinentes de corriente y tensión, para fi
   \caption{Comparación de resultados}
 \end{table}
 
-Se agregan, a modo ilustrativo, una imagen de una medición de tension y una de corriente.
+Se agrega, a modo ilustrativo, una imagen de una medición de tensión y una de corriente.
 
 \begin{figure}[h]
   \centering
@@ -352,7 +352,35 @@ y $v_{R_2}$ utilizando un osciloscopio analógico.
 \end{figure}
 
 \chapter{Conclusión}
+\section{Análisis comparativo}
 
+Como pudimos obvservar en el desarollo del trabajo, existen ciertas diferencias y similitudes entre los datos obtenidos
+mediante el análisis teórico y el cálculo numérico con aquellos obtenidos mediante el simulador LTSpice y las mediciones
+experimentales.
+
+\subsection*{Similitudes}
+
+En general, los tres métodos (análisis, simulación y medición) muestran resultados consistentes entre sí.
+
+1- Las caídas de tensión sobre las resistencias $R_2$ y $R_3$ son prácticamente iguales, como era de esperarse al estar en paralelo.
+
+2- Las corrientes obtenidas por simulación son muy cercanas a las calculadas teóricamente, validando los procedimientos analíticos.
+
+3- Las mediciones también siguen la misma tendencia, confirmando el comportamiento previsto del circuito resistivo.
+
+\subsection*{Diferencias}
+Podemos atribuir aquellas diferencias en los datos obtenidos a la tensión suministrada por la fuente real $V_s$, que se
+midió en $9.97\V$ en lugar de los $10\V$ teóricos, aunque tambien dichas diferencias pueden atribuirse a las tolerancias en
+los valores reales de las resistencias utilizadas ó posibles errores de medición en la implementación del multímetro.
+
+En la simulación, los valores son casi idénticos a los del análisis teórico, ya que el software utiliza los valores ideales
+de los componentes, sin considerar tolerancias ni pérdidas reales.
+
+\subsection*{Conclusión del análisis}
+
+Las diferencias observadas se encuentran dentro del margen de tolerancia permitido en un entorno de laboratorio. En
+conjunto, los tres enfoques corroboran la validez del modelo teórico para describir el comportamiento del circuito
+resistivo, y demuestran el correcto uso de los instrumentos de medición y de la herramienta de simulación.
 \section{Rúbrica}
 
 \begin{table}[H]
