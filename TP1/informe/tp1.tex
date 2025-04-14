@@ -1,0 +1,515 @@
+\documentclass[]{informeutn}
+
+\usepackage{circuitikz}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18} % o una versión compatible con tu compilador
+
+% Datos del informe
+\materia{Dispositivos Electrónicos}
+\comision{3R2}
+\titulo{Trabajo Práctico 1}
+\autores{Cabaleiro Martin 404821\\Cortesini Luciano 402719\\Ernst Pedro 400624}
+\fecha{8 / 4 / 2025}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\setcounter{page}{1}
+\thispagestyle{plain}
+
+\chapter{Introducción}
+
+En este trabajo práctico de laboratorio se estudiará el comportamiento de un circuito resistivo frente a señales continuas y alternas.
+
+Para ello, en primer lugar se plantea el circuito y se analiza de forma analítica utilizando las leyes de Kirchhoff (ley de nodos y
+ley de mallas), la ley de Ohm y el cálculo de resistencias equivalentes. Luego, se realizará una simulación del circuito mediante el
+software LTSpice con el objetivo de verificar los resultados obtenidos teóricamente. Finalmente, el circuito se implementará
+físicamente sobre una placa protoboard, y se llevarán a cabo mediciones de tensiones y corrientes. Para las señales continuas se
+utilizará un multímetro, mientras que para las señales alternas se utilizará un osciloscopio.
+
+El objetivo principal de este trabajo es comparar los resultados teóricos, simulados y experimentales, analizar el comportamiento 
+del circuito resistivo ante diferentes tipos de señal, y practicar el uso de los instrumentos y elementos disponibles en el laboratorio.
+
+\chapter{Circuito en corriente continua}
+
+El circuito a analizar es:
+% DATOS %
+\newcommand{\VS}{10\V}
+\newcommand{\Ra}{10\kohm}
+\newcommand{\Rb}{4.7\kohm}
+\newcommand{\Rc}{3.3\kohm}
+
+\begin{figure}[h]
+  \begin{minipage}[t][4cm][c]{0.5\textwidth}
+    \begin{circuitikz} [scale=1, transform shape]
+      \draw  (0,0) to[battery, invert, l=$V_S$] (0,3)
+          to[R, l=$R_1$,] (3,3) node[circ]{}
+          to[R, l=$R_2$] (3,0);
+      \draw (3,3) to[short] (5,3)
+          to[R, l=$R_3$] (5,0)
+          to[short] (3,0) node[circ]{}
+          to[short] (0,0);
+      \draw[->, thin] (1,2.5) -- (2,2.5) node[pos=0.5, below] {$I_1$};
+      \draw[->, thin] (2.5,2) -- (2.5,1) node[pos=0.5, left] {$I_2$};
+      \draw[->, thin] (4.5,2) -- (4.5,1) node[pos=0.5, left] {$I_3$};
+    \end{circuitikz}
+  \end{minipage}
+  \begin{minipage}[t][4.5cm][c]{0.4\textwidth}
+    \begin{itemize}
+      \item $V_S = \VS$
+      \item $R_1 = \Ra$
+      \item $R_2 = \Rb$
+      \item $R_3 = \Rc$
+    \end{itemize}
+  \end{minipage}
+  \caption{Circuito}
+\end{figure}
+
+\section{Cálculo analítico}
+Empezamos calculando la resistencia equivalente del circuito.
+
+% RESULTADOS DE CALCULOS %
+\newcommand{\Req}{11.938\kohm}
+\newcommand{\VRa}{8.346\V}
+\newcommand{\VRb}{1.623\V}
+\newcommand{\VRc}{1.623\V}
+\newcommand{\Ia}{837.661\uA}
+\newcommand{\Ib}{345.402\uA}
+\newcommand{\Ic}{497.936\uA}
+
+$$R_{eq} = R_1 + \left(R_2^{-1}+R_3^{-1}\right)^{-1}$$
+$$R_{eq} = \Ra + \left((\Rb)^{-1}+(\Rc)^{-1}\right)^{-1}$$
+$$R_{eq} = \Req$$
+
+Conociendo $R_{eq}$ podemos calcular la corriente $I_1$ entregada por la fuente a través de la ley de Ohm.
+
+$$I_1=\frac{V_s}{R_{eq}}$$
+$$I_1=\frac{\VS}{\Req}$$
+$$I_1= \Ia$$
+
+A través de la ley de Kirchhoff de las tensiones, podemos calcular la caída de tensión de las resistencias.
+
+$$V_s - V_{R_1} - V_{R_2} = 0$$
+$$V_s - I_1R_1 - V_{R_2} = 0$$
+
+$$V_{R_2} = V_s - I_1R_1$$
+$$V_{R_2} = \VS - \Ia \cdot \Ra$$
+$$V_{R_2} = \VRb$$
+
+$$V_{R_1} = V_s - V_{R_2}$$
+$$V_{R_1} = \VS - \VRb$$
+$$V_{R_1} = \VRa$$
+
+Siendo $V_{R_2}=V_{R_3}$ por estar en paralelo.
+Conociendo las caidas de tensión en las resistencias $R_2$ y $R_3$. se podrá calcular la corriente que las atraviesa.
+
+\noindent
+\begin{minipage}[][][t]{0.5 \textwidth}
+  \vspace*{9pt}
+  $$I_2=\frac{V_{R_2}}{R_2}$$
+  $$I_2=\frac{\VRb}{\Rb}$$
+  $$I_2=\Ib$$
+  \vspace*{1pt}
+\end{minipage}
+\begin{minipage}[][][t]{0.5 \textwidth}
+  \vspace*{9pt}
+  $$I_3=\frac{V_{R_3}}{R_3}$$
+  $$I_3=\frac{\VRc}{\Rc}$$
+  $$I_3=\Ic$$
+  \vspace*{1pt}
+\end{minipage}
+
+%Para finalizar, podemos comprobar que estos cálculos satisfacen la ley de Kirchhoff de las corrientes.
+%
+%$$I_1 - I_2 - I_3 = 0$$
+%$$I_1 = - I_2 + I_3$$
+%$$837,661\uA = 345,402\uA + 497,936\uA$$
+
+\section{Simulación}
+Se simuló el circuito en el software LTSpice, con el modo operating point.
+
+\vspace{5pt}
+\begin{figure}[h]
+  \includegraphics[width=0.95\textwidth]{imagenes/simulacion_CC.png}
+  \caption{Simulación en CC}
+\end{figure}
+\vspace{5pt}
+
+Estos resultados confirman nuestros cálculos analíticos, determinamos que aquellas diferencias en las corrientes son producto
+de los aproximaciones numéricas en los calculos previos.
+
+\section{Implementación y mediciones}
+
+Se implementó el circuito en una placa del tipo protoboard, utilizando resistencias de $1/4\W$, y una fuente de laboratorio para alimentar
+el circuito, como puede verse en la figura siguiente:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{imagenes/foto_circuito.jpg}
+  \caption{Implementación del circuito en la protoboard}
+\end{figure}
+
+Luego, se realizaron las mediciones pertinentes de corriente y tensión, para finalmente confeccionar la siguiente tabla comparativa:
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    \multicolumn{2}{|c|}{} & \textbf{$V_s$} & \textbf{$R_1$} & \textbf{$R_2$} & \textbf{$R_3$} \\
+    \hline
+    \multirow{3}{*}{Tension[V]}
+    & Análisis & 10 & 8.346 & 1.623 & 1.623 \\
+    \cline{2-6}
+    & Simulación & 10 & 8.34 & 1.623 & 1.623 \\
+    \cline{2-6}
+    & Medición  & 9.99  & 8.44 & 1.498 & 1.498 \\
+    \hline
+    \multirow{3}{*}{Corriente[$\mu$A]}
+    & Análisis & 837.661 & 837.661 & 345.402 & 497.936 \\
+    \cline{2-6}
+    & Simulación & 837.609 & 837.609 & 345.514 & 492.095 \\
+    \cline{2-6}
+    & Medición & 836 & 827 & 342 & 492 \\
+    \hline
+  \end{tabular}
+  \caption{Comparación de resultados}
+\end{table}
+
+Se agregan, a modo ilustrativo, imagenes de mediciones de tension y de corriente.
+
+\begin{figure}[h]
+  \centering
+  \begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{imagenes/medicion_tension_R1.jpg}
+    \caption{Medición de tension en $R_1$}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{imagenes/medicion_tension_R2.jpg}
+    \caption{Medición de tension en $R_2$}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{imagenes/medicion_corriente_fuente.jpg}
+    \caption{Medición de corriente $I_1$}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{imagenes/medicion_corriente_R3.jpg}
+    \caption{Medición de corriente $I_3$}
+  \end{minipage}
+\end{figure}
+
+\chapter{Circuito en corriente alterna}
+
+El circuito a analizar es:
+
+% DATOS %
+\newcommand{\vs}{5\V}
+\newcommand{\vsv}{5}
+\newcommand{\freq}{50\Hz}
+\newcommand{\vph}{\,\sin\left(2\pi\cdot \freq \cdot t\right)}
+
+\begin{figure}[h]
+  \begin{minipage}[t][4cm][c]{0.5\textwidth}
+    \begin{circuitikz} [scale=1, transform shape]
+      \draw  (0,0) to[sV, invert, l=$v_s$] (0,3)
+          to[R, l=$R_1$,] (3,3) node[circ]{}
+          to[R, l=$R_2$] (3,0);
+      \draw (3,3) to[short] (5,3)
+          to[R, l=$R_3$] (5,0)
+          to[short] (3,0) node[circ]{}
+          to[short] (0,0);
+      \draw[->, thin] (1,2.5) -- (2,2.5) node[pos=0.5, below] {$i_1$};
+      \draw[->, thin] (2.5,2) -- (2.5,1) node[pos=0.5, left] {$i_2$};
+      \draw[->, thin] (4.5,2) -- (4.5,1) node[pos=0.5, left] {$i_3$};
+    \end{circuitikz}
+  \end{minipage}
+  \begin{minipage}[t][4.5cm][c]{0.4\textwidth}
+    \begin{itemize}
+      \item $v_s = \vs\vph$
+      \item $R_1 = \Ra$
+      \item $R_2 = \Rb$
+      \item $R_3 = \Rc$
+    \end{itemize}
+  \end{minipage}
+  \caption{Circuito}
+\end{figure}
+
+Nota: Se utilizan letras minúsculas para denotar señales que son funcion del tiempo.
+
+\section{Cálculo analítico}
+
+Apoyándonos en los cálculos realizados en CC de $R_{eq}$, podemos calcular las corrientes y tensiones similarmente.
+
+% RESULTADOS DE CALCULOS %
+\newcommand{\vRa}{4.188 \V}
+\newcommand{\vRb}{811.694 \mV}
+\newcommand{\vRc}{811.694 \mV}
+\newcommand{\ia}{418.831\uA}
+\newcommand{\ib}{172.701\uA}
+\newcommand{\ic}{245.968\uA}
+
+$$i_1=\frac{v_t}{R_{eq}}$$
+$$i_1=\frac{\vs}{\Req}\vph$$
+$$i_1=\ia\vph$$
+
+$$v_{R_2} = v_s - i_1R_1$$
+$$v_{R_2} = \left(\vs - \ia \cdot \Ra \right)\vph$$
+$$v_{R_2} = \vRb\vph$$
+
+$$v_{R_1} = v_s - v_{R_2}$$
+$$v_{R_1} = \vs - \vRb \vph$$
+$$v_{R_1} = \vRa\vph$$
+
+\noindent
+\begin{minipage}[][][t]{0.5 \textwidth}
+  \vspace*{10pt}
+  $$i_2=\frac{v_{R_2}}{R_2}$$
+  $$i_2=\frac{\vRb}{\Rb}\vph$$
+  $$i_2=\ib\vph$$
+  \vspace*{1pt}
+\end{minipage}
+\begin{minipage}[][][t]{0.5 \textwidth}
+  \vspace*{10pt}
+  $$i_3=\frac{v_{R_3}}{R_3}$$
+  $$i_3=\frac{\vRc}{\Rc}\vph$$
+  $$i_3=\ic\vph$$
+  \vspace*{1pt}
+\end{minipage}
+
+\noindent
+\begin{figure}[H]
+  \begin{minipage}[t][5cm][c]{0.5 \textwidth}
+      \begin{tikzpicture}
+        \begin{axis}[
+            axis lines=middle,
+            xlabel={$t$ [ms]},
+            ylabel={[V]},
+            domain=0:40,
+            samples=200,
+            grid=both,
+            width=8.5cm,
+            height=7cm,
+            ymin=-6, ymax=6,
+            xmin=0, xmax=40,
+          ]
+          \addplot[blue, thick] {5*sin(deg(2*pi*50*(x)/1000))};
+          \addlegendentry{$v_s$}
+          \addplot[green, thick] {4.188*sin(deg(2*pi*50*(x)/1000))};
+          \addlegendentry{$v_{R_1}$}
+          \addplot[red, thick] {0.811694*sin(deg(2*pi*50*(x)/1000))};
+          \addlegendentry{$v_{R_2}$}
+        \end{axis}
+    \end{tikzpicture}
+  \end{minipage}
+  \begin{minipage}[t][5cm][c]{0.5 \textwidth}
+    \begin{tikzpicture}
+      \begin{axis}[
+          axis lines=middle,
+          xlabel={$t$ [ms]},
+          ylabel={[$\uA$]},
+          domain=0:40,
+          samples=200,
+          grid=both,
+          width=8.5cm,
+          height=7cm,
+          ymin=-500, ymax=500,
+          xmin=0, xmax=40,
+        ]
+        \addplot[blue, thick] {418.831*sin(deg(2*pi*50*(x)/1000))};
+        \addlegendentry{$i_1$}
+        \addplot[red, thick] {172.701*sin(deg(2*pi*50*(x)/1000))};
+        \addlegendentry{$i_2$}
+        \addplot[green, thick] {245.968*sin(deg(2*pi*50*(x)/1000))};
+        \addlegendentry{$i_3$}
+      \end{axis}
+    \end{tikzpicture}
+  \end{minipage}
+  \caption{Gráfico de señales obtenidas analíticamente}
+\end{figure}
+
+\section{Simulación}
+Simulación del circuito en el software LTSpice, con el modo transient.
+
+\vspace{5pt}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.45\textwidth]{imagenes/circuito_CA.png}
+  \caption{Circuito de simulación en CA}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{imagenes/simulacion_CA_T.png}
+  \caption{Gráfico de tensiones simuladas}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{imagenes/simulacion_CA_C.png}
+  \caption{Gráfico de corrientes simuladas}
+\end{figure}
+\vspace{5pt}
+
+Estos resultados coinciden con nuestro cálculo teórico.
+
+\section{Implementación y mediciones}
+
+Se implementó el circuito cambiando la fuente de laboratorio por un generador de señales
+configurado para entregar una señal de $10V_{pp}$ y $50\Hz$. Se midieron las tensiones $v_s$
+y $v_{R_2}$ utilizando un osciloscopio analógico.
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{imagenes/osciloscopio_vs.jpg}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{imagenes/medicion_ca_fuente.jpg}
+  \end{minipage}
+  \caption{Medicion de la señal $v_s$, Con $2\ms/$div y $2\V/$div}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{imagenes/osciloscopio_vr2.jpg}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{imagenes/medicion_ca_R2.jpg}
+  \end{minipage}
+  \caption{Medicion de la señal $v_{R_2}$, Con $2\ms/$div y $0.5\V/$div}
+\end{figure}
+
+Nuevamente, los resultados obtenidos son consistentes con el cálculo teórico y la simulación.
+
+\chapter{Conclusión}
+
+\section{Analisis de potencia}
+La potencia disipada en cada uno de los resitores es:
+
+% VALORES CALCULADOS %
+\newcommand{\PRa}{6.991\mW}
+\newcommand{\PRb}{0.560\mW}
+\newcommand{\PRc}{0.808\mW}
+
+\begin{minipage}[t][][c]{0.3\textwidth}
+  $$P_{R_1} = V_{R_1}I_1$$
+  $$P_{R_1} = \VRa\cdot\Ia$$
+  $$P_{R_1} = \PRa$$
+\end{minipage}
+\hfill
+\begin{minipage}[t][][c]{0.3\textwidth}
+  $$P_{R_2} = V_{R_2}I_2$$
+  $$P_{R_2} = \VRb\cdot\Ib$$
+  $$P_{R_2} = \PRb$$
+\end{minipage}
+\hfill
+\begin{minipage}[t][][c]{0.3\textwidth}
+  $$P_{R_3} = V_{R_3}I_3$$
+  $$P_{R_3} = \VRc\cdot\Ic$$
+  $$P_{R_3} = \PRc$$
+\end{minipage}
+\vspace{0.5cm}
+
+Lo cual está muy por debajo de los $250\mW$ de potencia máxima. Por lo que incluso se podrian haber utilizado resistencias
+de $1/8\W$ sin ningún problema.
+
+\section{Análisis comparativo}
+
+Como pudimos obvservar en el desarollo del trabajo, existen ciertas diferencias y similitudes entre los datos obtenidos
+mediante el análisis teórico y el cálculo numérico con aquellos obtenidos mediante el simulador LTSpice y las mediciones
+experimentales.
+
+\subsection*{Similitudes}
+
+En general, los tres métodos (análisis, simulación y medición) muestran resultados consistentes entre sí.
+
+1- Las caídas de tensión sobre las resistencias $R_2$ y $R_3$ son prácticamente iguales, como era de esperarse al estar en paralelo.
+
+2- Las corrientes obtenidas por simulación son muy cercanas a las calculadas teóricamente, validando los procedimientos analíticos.
+
+3- Las mediciones también siguen la misma tendencia, confirmando el comportamiento previsto del circuito resistivo.
+
+\subsection*{Diferencias}
+Podemos atribuir aquellas diferencias en los datos obtenidos a que los componentes utilizados en el laboratorio no son ideales.
+La fuente no es exactamente de $10\V$, y ademas notamos que le costaba estabilizar el valor de tensión. Y los resitores utilizados
+tienen una tolerancia de $\pm5\percent$. Tambien, pudieron haberse agregado errores en la medicion con el multímetro.
+
+En la simulación, los valores son casi idénticos a los del análisis teórico, principalmente por errores introducidos en los redondeos
+durante el desarrollo.
+
+\subsection*{Conclusión del análisis}
+
+Las diferencias observadas se encuentran dentro del margen de tolerancia permitido en un entorno de laboratorio. En
+conjunto, los tres enfoques corroboran la validez del modelo teórico para describir el comportamiento del circuito
+resistivo, y demuestran el correcto uso de los instrumentos de medición y de la herramienta de simulación.
+
+\section{Instrumentos utilizados}
+\begin{itemize}
+  \item Tester UNI-T UT33A+
+  \item Fuente de laboratorio de la facultad, identificada como N2.
+  \item Osciloscopio Protek P-2520, identificado como O-117 en el laboratorio.
+  \item Generador de funciones Gwinstek SFG-2120, identificado como G-174 en el laboratorio.
+\end{itemize}
+
+\section{Rúbrica}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|c|c|c|}
+    \hline
+    \rowcolor[gray]{0.8}
+    \textbf{Tarea} & \textbf{Puntuación} & \textbf{Máximo} \\
+    \hline
+    Presentación del informe & & 30 \% \\
+    \hline
+    Explicación del proceso de medición & & 40 \% \\
+    \hline
+    Defensa de las conclusiones & & 30 \% \\
+    \hline
+    \textbf{Total} & & \textbf{100 \%} \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\section{Planilla de seguimiento}
+
+\begin{table}[H]
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{|c|c|c|c|c|c|c|c|}
+    \hline
+    \multicolumn{1}{|p{2.5cm}|}{\centering \textbf{Versión} \\ \textbf{del TP}} &
+    \multicolumn{1}{p{2.2cm}|}{\centering \textbf{Fecha de} \\ \textbf{inicio}} &
+    \multicolumn{1}{p{2.5cm}|}{\centering \textbf{Revisado} \\ \textbf{por}} &
+    \multicolumn{1}{p{4cm}|}{\centering \textbf{Resumen Observaciones /} \\ \textbf{Correcciones / Propuestas}} &
+    \multicolumn{1}{p{4cm}|}{\centering \textbf{Fecha de} \\ \textbf{retroalimentación enviada}} &
+    \multicolumn{1}{p{3cm}|}{\centering \textbf{Cambios realizados por} \\ \textbf{JTP (sí/no)}} &
+    \multicolumn{1}{p{3cm}|}{\centering \textbf{Fecha de entrega de} \\ \textbf{versión corregida}} &
+    \multicolumn{1}{p{3cm}|}{\centering \textbf{Aprobado por jefe de} \\ \textbf{cátedra (sí/no)}} \\
+    \hline
+    1.0 (2025) & & & & & & & SI \\
+    \hline
+  \end{tabular}
+  }
+\end{table}
+
+
+\end{document}
