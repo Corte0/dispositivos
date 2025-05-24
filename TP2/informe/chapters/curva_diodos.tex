@@ -1,5 +1,18 @@
 \chapter{Curva caracteristica de los diodos}
 
+\begin{figure}[H]
+  \centering
+  \begin{circuitikz} [circuitikz/diodes/scale=0.7]
+    \draw (0,0) to[battery1, invert, l=$10\V$, name=V1] (0,2.5)
+      to[R, l_=$1\kohm$ , name=R1] (4,2.5)
+      to[full diode, l=D1] (4,0)
+      -- (0,0);
+    \node at ($(R1.center) + (0,0.5)$)[] {R1};
+    \node at ($(V1.center) + (0.8,0)$)[] {V1};
+  \end{circuitikz}
+  \caption{Circuito båsico del diodo polarizado en directa}
+\end{figure}
+
 \subsection{Polarizacion en directa}
 
 \begin{figure}[H]
@@ -37,6 +50,11 @@
     \label{fig:1N4007Directa}
 \end{figure}
 
+\begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}]
+.dc V1 -2 10 100m
+.MODEL DI_1N4007 D ( IS=76.9p RS=42.0m BV=1.00k IBV=5.00u + CJO=26.5p M=0.333 N=1.45 TT=4.32u )
+\end{lstlisting}
+
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}
@@ -71,6 +89,11 @@
     \caption{Curva del diodo 1N60 en directa, obtenida por simulación.}
     \label{fig:1N60Directa}
 \end{figure}
+
+\begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}]
+.dc V1 -100 10 100m
+.MODEL 1N60 D RS=50.0559 EG=1.11 XTI=3 VJ=0.8 M=0.1 FC=0.5 BV=40 CJO=1.75p IS=1.37773u N=2 TT=100n type=germanium
+\end{lstlisting}
 
 \begin{figure}[H]
     \centering
@@ -150,6 +173,11 @@
     \label{fig:1N4007Inversa}
 \end{figure}
 
+\begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}]
+.dc V1 -1200 10 100m
+.MODEL DI_1N4007 D ( IS=76.9p RS=42.0m BV=1.00k IBV=5.00u + CJO=26.5p M=0.333 N=1.45 TT=4.32u )
+\end{lstlisting}
+
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}
@@ -179,7 +207,35 @@
     \label{fig:1N60Inversa}
 \end{figure}
 
+\begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}]
+.d.dc V1 -100 10 100mc V1 -100 10 100m
+.MODEL 1N60 D RS=50.0559 EG=1.11 XTI=3 VJ=0.8 M=0.1 FC=0.5 BV=40 CJO=1.75p IS=1.37773u N=2 TT=100n type=germanium
+\end{lstlisting}
+
 \section{Actividad de laboratorio}
+
+\begin{figure}[H]
+  \centering
+  \begin{circuitikz} [circuitikz/diodes/scale=0.7]
+    \tikzset{vmeter/.style={rmeterwa,t=V}}
+    \tikzset{ameter/.style={rmeterwa,t=A}}
+    \tikzset{ometer/.style={rmeterwa,t=$\Omega$}}
+    \draw (0,0) to[battery1, invert, l=$10\V$, name=V1] (0,2.5)
+      to[R, l_=$1\kohm$ , name=R1] (4,2.5)
+      to[full diode, l=D1] (4,0);
+      \draw (0,0) to[ameter] (4,0);
+      \draw (0,0) -- ++(-2.5,0)
+      to[vmeter] ++(0,2.5)
+      -- ++(2.5,0) ;
+      \draw (4,0) -- ++(2.5,0)
+      to[vmeter] ++(0,2.5)
+      -- ++(-2.5,0) ;
+
+    \node at ($(R1.center) + (0,0.5)$)[] {R1};
+    \node at ($(V1.center) + (0.8,0)$)[] {V1};
+  \end{circuitikz}
+  \caption{Circuito con amperimetro y voltimeros para realizar las mediciones}
+\end{figure}
 
 \begin{figure}[H]
   \centering

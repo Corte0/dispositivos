@@ -1,5 +1,46 @@
 \chapter{Circuitos recortadores con diodos zener}
 
+\begin{minipage}[t]{0.45 \textwidth}
+  \begin{figure}[H]
+    \centering
+    \begin{circuitikz}
+      \draw (0,0) to[short, o-o] (6,0);
+
+      \draw (0,4) to[short, o-] (0.1,4)
+        to[R,l=R,name=R1] (3,4)
+        to[short,-o] (6,4);
+
+      \draw (3,0) to[full ZZener diode, l_=$20\,\mathrm{V}$] (3,2)
+      to[full ZZener diode, l_=$5{,}1\,\mathrm{V}$, invert] (3,4);
+
+      \node at ($(0,0)!0.5!(0,4)$) []{$v_{in}$};
+      \node at ($(6,0)!0.5!(6,4)$) []{$v_{out}$};
+
+    \end{circuitikz}
+    \caption{Circuito 1}
+  \end{figure}
+\end{minipage}
+\begin{minipage}[t]{0.45 \textwidth}
+  \begin{figure}[H]
+    \centering
+    \begin{circuitikz}
+      \draw (0,0) to[short, o-o] (6,0);
+
+      \draw (0,4) to[short, o-] (0.1,4)
+        to[R,l=R,name=R1] (3,4)
+        to[short,-o] (6,4);
+
+      \draw (3,0) to[full ZZener diode, l_=$12\,\mathrm{V}$, invert] (3,2)
+      to[full ZZener diode, l_=$6{,}8\,\mathrm{V}$] (3,4);
+
+      \node at ($(0,0)!0.5!(0,4)$) []{$v_{in}$};
+      \node at ($(6,0)!0.5!(6,4)$) []{$v_{out}$};
+
+    \end{circuitikz}
+    \caption{Circuito 2}
+  \end{figure}
+\end{minipage}
+
 \begin{figure}[H]
   \centering
   \begin{tikzpicture}
@@ -47,6 +88,13 @@
   \label{fig:RecortadorA}
 \end{figure}
 
+\begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}]
+.tran 40m
+SINE(0 33.9411 50)
+.model UMZ5_1N D(Is=195.31E-18 N=1.0202 Rs=.18755 Ikf=23.861 Cjo=33.759E-12 M=.46336 Vj=.80698 Isr=71.903E-12 Bv=5.0900 Ibv=4.6000E-3 Tt=44.724E-9 Nbv=0.3 Tbv1=0.00025 Nbvl=8.5 Ibvl=4.0000E-4 Vpk=5.1 mfg=Rohm type=Zener)
+.model CDZV20B D(Is=5.4004E-16 N=1.0500 Rs=.24711 Ikf=1.0080 Cjo=1.1200E-11 M=.32891 Vj=.51639 Isr=0.2831E-12 Nr=2.2500 Bv=20.00 Ibv=1.0000E-3 Tt=1.8200E-7 Nbv=0.8000 Tbv1=0.83E-3 Nbvl=58.400 Ibvl=0.3000E-11 Vpk=20 mfg=Rohm type=Zener)
+\end{lstlisting}
+
 \begin{figure}[H]
   \centering
   \begin{tikzpicture}
@@ -93,3 +141,10 @@
   \caption{Señal de salida del circuito 2, obtenida por simulación.}
   \label{fig:RecortadorB}
 \end{figure}
+
+\begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}]
+.tran 40m
+SINE(0 33.9411 50)
+.model CDZV6_8B D(Is=1.7609E-16 N=1.0196 Rs=.26014 Ikf=.94002 Cjo=1.9100E-11 M=.36585 Vj=.76843 Isr=0.3906E-12 Nr=3.2000 Bv=6.7900 Ibv=5.0000E-3 Tt=85.000E-9 Nbv=0.1000 Tbv1=0.4600E-3 Nbvl=11.400 Ibvl=100.00E-9 Vpk=6.8 mfg=Rohm type=Zener)
+.model CDZV12B D(Is=3.4990E-16 N=1.0420 Rs=.26313 Ikf=.87303 Cjo=1.3700E-11 M=.35603 Vj=.75124 Isr=5.1535E-13 Nr=2.8200 Bv=11.930 Ibv=1.0000E-3 Tt=1.8500E-7 Nbv=0.4000 Tbv1=0.7300E-3 Nbvl=26.200 Ibvl=1.0000E-11 Vpk=12 mfg=Rohm type=Zener)
+\end{lstlisting}

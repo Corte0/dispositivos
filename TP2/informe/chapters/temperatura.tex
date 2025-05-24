@@ -52,3 +52,9 @@
     \caption{Curva del diodo 1N3198 a diferentes temperaturas, obtenida por simulación.}
     \label{fig:Temperaturas}
 \end{figure}
+
+\begin{lstlisting}[style=ltspice, caption={Parámetros de simulación LTspice}]
+.dc V1 -10 10 10m
+.model 1N3198 D (IS=2.0e-7 N=1.20 RS=1.0 EG=1.11 XTI=-2 CJO=40p VJ=0.75 M=0.333 BV=2.25 IBV=5m KF=0 AF=1 FC=0.5)
+.step temp list 20 100 125
+\end{lstlisting}
