@@ -1,4 +1,59 @@
 \chapter{Identificacion de pines}
 
+La polaridad de los terminales del diodo está especificada en su encapsulado según lo visto en las clases de aula. De todas formas es posible validar esta polaridad con el multímetro, es justamente lo que se realizará en esta primera actividad
+
 \section{Actividad de laboratorio}
+
+\subsection{Tabla de polaridad en diodos}
+
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|m{5cm}|c|c|c|c|}
+    \hline
+    \textbf{Sentido de las puntas del multimetro} & \multicolumn{2}{c|}{\textbf{Diodo de germanio}} & \multicolumn{2}{c|}{\textbf{Diodo de silicio}} \\
+    \cline{2-5} & \textbf{D1} & \textbf{D2} & \textbf{D1} & \text{D2} \\
+    \hline
+    \includegraphics[width=3.2cm]{images/punta1.png} & 355 & 297 & 703 & 620 \\
+    \hline
+    \includegraphics[width=3.2cm]{images/punta2.png} & 0 & 0 & 0 & 0 \\
+    \hline
+  \end{tabular}
+  \caption{Mediciones con el multimetro en diferentes polaridades}
+\end{table}
+
+\subsection{Imagenes de las mediciones}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[angle=180, width=0.60\textwidth]{images/diodo1_inversa.png}
+  \caption{Diodo de germanio 1 en inversa}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[angle=180, width=0.60\textwidth]{images/diodo1_directa.png}
+  \caption{Diodo de germanio 1 en directa}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[angle=180, width=0.60\textwidth]{images/diodo2_inversa.png}
+  \caption{Diodo de germanio 2 en inversa}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[angle=180, width=0.60\textwidth]{images/diodo2_directa.png}
+  \caption{Diodo de germanio 2 en directa}
+\end{figure}
+
+\subsection{Conclusiones sobre la polaridad de los diodos}
+
+\begin{itemize}
+    \item Al medir los diodos utilizando la función de continuidad del multímetro, observamos que se mostraban valores numéricos. Estos valores no corresponden estrictamente a una resistencia en ohmios, sino que reflejan una lectura aproximada relacionada con la conducción del diodo bajo la baja tensión que aplica el instrumento.
+    
+    \item Aunque los diodos utilizados eran del mismo tipo, se observaron diferencias en las lecturas. Estas variaciones son normales y pueden atribuirse a tolerancias en el proceso de fabricación, diferencias en el dopado de los materiales semiconductores, o a pequeñas imperfecciones estructurales internas.
+    
+    \item En todos los casos, los diodos presentaron continuidad en polarización directa y no condujeron en inversa, lo que confirma su correcto funcionamiento dentro de parámetros esperables.
+\end{itemize}
 
