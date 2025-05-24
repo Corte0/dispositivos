@@ -1,0 +1,54 @@
+\chapter{Comportamiento del diodo en funcion de la temperatura}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=12cm,
+            height=8cm,
+            xlabel={$V$ [V]},
+            ylabel={$I$ [mA]},
+            grid=both,
+            minor tick num=1,
+            scaled ticks=false,
+            restrict x to domain=-4:4,
+            legend pos=north west,
+        ]
+        \addplot[
+            color=blue,
+            mark=none,
+            thick,
+        ] table[
+            col sep=tab,
+            header=true,
+            x=V1,
+            y expr=\thisrow{I(D1)}*1000
+        ] {tables/1N3198T20C.txt};
+        \addlegendentry{$20^o C$}
+        \addplot[
+            color=red,
+            mark=none,
+            thick,
+        ] table[
+            col sep=tab,
+            header=true,
+            x=V1,
+            y expr=\thisrow{I(D1)}*1000
+        ] {tables/1N3198T100C.txt};
+        \addlegendentry{$100^o C$}
+        \addplot[
+            color=green,
+            mark=none,
+            thick,
+        ] table[
+            col sep=tab,
+            header=true,
+            x=V1,
+            y expr=\thisrow{I(D1)}*1000
+        ] {tables/1N3198T125C.txt};
+        \addlegendentry{$125^o C$}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Curva del diodo 1N3198 a diferentes temperaturas, obtenida por simulación.}
+    \label{fig:Temperaturas}
+\end{figure}

@@ -1,0 +1,95 @@
+\chapter{Circuitos recortadores con diodos zener}
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=12cm,
+      height=8cm,
+      xlabel={$t$ [ms]},
+      ylabel={$V$ [V]},
+      grid=both,
+      minor tick num=1,
+      scaled ticks=false,
+      xmax=40, xmin=0,
+      extra y ticks={-5.1, 20},
+      extra y tick style={
+        grid style={darkgray, dashed, opacity=0.8},
+        tick style={darkgray},
+        tick label style={darkgray}
+       },
+    ]
+    \addplot[
+      color=blue,
+      mark=none,
+      dashed,
+    ] table[
+      col sep=tab,
+      header=true,
+      x expr=\thisrow{time}*1000,
+      y = V(n003)
+    ] {tables/RecortadorVin.txt};
+    \addlegendentry{$v_{in}$}
+    \addplot[
+      color=red,
+      mark=none,
+      thick,
+    ] table[
+      col sep=tab,
+      header=true,
+      x expr=\thisrow{time}*1000,
+      y = V(n004)
+    ] {tables/RecortadorVoutA.txt};
+    \addlegendentry{$v_{out}$}
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Señal de salida del circuito 1, obtenida por simulación.}
+  \label{fig:RecortadorA}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=12cm,
+      height=8cm,
+      xlabel={$t$ [ms]},
+      ylabel={$V$ [V]},
+      grid=both,
+      minor tick num=1,
+      scaled ticks=false,
+      xmax=40, xmin=0,
+      extra y ticks={-12, 6.8},
+      extra y tick style={
+        grid style={darkgray, dashed, opacity=0.8},
+        tick style={darkgray},
+        tick label style={darkgray}
+       },
+    ]
+    \addplot[
+      color=blue,
+      mark=none,
+      dashed,
+    ] table[
+      col sep=tab,
+      header=true,
+      x expr=\thisrow{time}*1000,
+      y = V(n003)
+    ] {tables/RecortadorVin.txt};
+    \addlegendentry{$v_{in}$}
+    \addplot[
+      color=red,
+      mark=none,
+      thick,
+    ] table[
+      col sep=tab,
+      header=true,
+      x expr=\thisrow{time}*1000,
+      y = V(n002)
+    ] {tables/RecortadorVoutB.txt};
+    \addlegendentry{$v_{out}$}
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Señal de salida del circuito 2, obtenida por simulación.}
+  \label{fig:RecortadorB}
+\end{figure}

@@ -1,0 +1,183 @@
+\chapter{Curva caracteristica de los diodos}
+
+\subsection{Polarizacion en directa}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=12cm,
+            height=8cm,
+            xlabel={$V$ [V]},
+            ylabel={$I$ [mA]},
+            grid=both,
+            minor tick num=1,
+            extra x ticks={0.7},
+            extra x tick style={
+              grid style={red, thick, dashed},
+              tick style={red},
+              tick label style={red}
+             },
+            scaled ticks=false,
+            restrict x to domain=-1:4,
+        ]
+        \addplot[
+            color=blue,
+            mark=none,
+            thick,
+        ] table[
+            col sep=tab,
+            header=true,
+            x=V1,
+            y expr=\thisrow{I(D1)}*1000
+        ] {tables/1N4007Directa.txt};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Curva del diodo 1N4007 en directa, obtenida por simulación.}
+    \label{fig:1N4007Directa}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=12cm,
+            height=8cm,
+            xlabel={$V$ [V]},
+            ylabel={$I$ [mA]},
+            grid=both,
+            minor tick num=1,
+            extra x ticks={0.3},
+            extra x tick style={
+              grid style={red, thick, dashed},
+              tick style={red},
+              tick label style={red}
+             },
+            scaled ticks=false,
+            restrict x to domain=-1:4,
+        ]
+        \addplot[
+            color=blue,
+            mark=none,
+            thick,
+        ] table[
+            col sep=tab,
+            header=true,
+            x=V1,
+            y expr=\thisrow{I(D1)}*1000
+        ] {tables/1N60Directa.txt};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Curva del diodo 1N60 en directa, obtenida por simulación.}
+    \label{fig:1N60Directa}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=12cm,
+            height=8cm,
+            xlabel={$V$ [V]},
+            ylabel={$I$ [mA]},
+            grid=both,
+            minor tick num=1,
+            extra x ticks={0.3, 0.7},
+            extra x tick style={
+              grid style={red, thick, dashed},
+              tick style={red},
+              tick label style={red}
+             },
+            scaled ticks=false,
+            restrict x to domain=-1:4,
+            legend pos=north west,
+        ]
+        \addplot[
+            color=blue,
+            mark=none,
+            thick,
+        ] table[
+            col sep=tab,
+            header=true,
+            x=V1,
+            y expr=\thisrow{I(D1)}*1000
+        ] {tables/1N60Directa.txt};
+        \addlegendentry{1N60}
+        \addplot[
+            color=green,
+            mark=none,
+            thick,
+        ] table[
+            col sep=tab,
+            header=true,
+            x=V1,
+            y expr=\thisrow{I(D1)}*1000
+        ] {tables/1N4007Directa.txt};
+        \addlegendentry{1N4007}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Comparación de las curvas de los diodos 1N4007 y 1N60}
+    \label{fig:ComparacionDirecta}
+\end{figure}
+
+\subsection{Polarizacion en inversa}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=12cm,
+            height=8cm,
+            xlabel={$V$ [kV]},
+            ylabel={$I$ [mA]},
+            grid=both,
+            minor tick num=1,
+            scaled ticks=false,
+        ]
+        \addplot[
+            color=blue,
+            mark=none,
+            thick,
+        ] table[
+            col sep=tab,
+            header=true,
+            x expr=\thisrow{V1}/1000,
+            y expr=\thisrow{I(D1)}*1000
+        ] {tables/1N4007Inversa.txt};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Curva del diodo 1N4007 en inversa, obtenida por simulación.}
+    \label{fig:1N4007Inversa}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=12cm,
+            height=8cm,
+            xlabel={$V$ [V]},
+            ylabel={$I$ [mA]},
+            grid=both,
+            minor tick num=1,
+            scaled ticks=false,
+            restrict x to domain=-50:10,
+        ]
+        \addplot[
+            color=blue,
+            mark=none,
+            thick,
+        ] table[
+            col sep=tab,
+            header=true,
+            x = V1,
+            y expr=\thisrow{I(D1)}*1000
+        ] {tables/1N60Inversa.txt};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{Curva del diodo 1N60 en inversa, obtenida por simulación.}
+    \label{fig:1N60Inversa}
+\end{figure}
+
+\section{Actividad de laboratorio}
+
