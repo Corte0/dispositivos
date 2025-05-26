@@ -1,5 +1,5 @@
 \chapter{Comportamiento del diodo en funcion de la temperatura}
-
+\section{Gráfico obtenido mediante simulación}
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}
@@ -58,3 +58,18 @@
 .model 1N3198 D (IS=2.0e-7 N=1.20 RS=1.0 EG=1.11 XTI=-2 CJO=40p VJ=0.75 M=0.333 BV=2.25 IBV=5m KF=0 AF=1 FC=0.5)
 .step temp list 20 100 125
 \end{lstlisting}
+
+\section{Conclusión}
+
+Las curvas simuladas para el diodo 1N3198 a diferentes temperaturas ($20^\circ C$, $100^\circ C$ y $125^\circ C$) muestran que la corriente de conducción aumenta notablemente con la temperatura para un mismo voltaje aplicado en polarización directa. Esto se debe a que al incrementarse la temperatura, disminuye la barrera de potencial interna del diodo (tensión de umbral), facilitando el paso de corriente.
+
+En particular:
+
+\begin{itemize}
+  \item La corriente en la región de conducción directa crece exponencialmente y se ve intensificada a temperaturas elevadas, reflejando una menor resistencia efectiva del diodo.
+  \item El aumento de temperatura también incrementa la corriente de fuga en polarización inversa, debido a la mayor generación térmica de portadores minoritarios.
+  \item La simulación confirma que la temperatura afecta parámetros fundamentales del diodo, como la corriente de saturación inversa ($I_S$), lo que altera su comportamiento eléctrico.
+\end{itemize}
+
+Estos resultados son consistentes con el marco teórico visto previamente de semiconductores, que indica que la conductividad del material mejora con el calor, pero también que la estabilidad térmica del diodo puede verse comprometida si las temperaturas son demasiado altas, lo que podría afectar su vida útil y funcionamiento en aplicaciones reales.
+
