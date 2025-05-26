@@ -10,10 +10,10 @@
     \node at ($(R1.center) + (0,0.5)$)[] {R1};
     \node at ($(V1.center) + (0.8,0)$)[] {V1};
   \end{circuitikz}
-  \caption{Circuito båsico del diodo polarizado en directa}
+  \caption{Circuito básico del diodo polarizado en directa}
 \end{figure}
 
-\subsection{Polarizacion en directa}
+\section{Polarizacion en directa}
 
 \begin{figure}[H]
     \centering
@@ -143,7 +143,7 @@
     \label{fig:ComparacionDirecta}
 \end{figure}
 
-\subsection{Polarizacion en inversa}
+\section{Polarizacion en inversa}
 
 \begin{figure}[H]
     \centering
@@ -249,20 +249,6 @@
   \caption{Circuito del diodo 1N60 en polarizacion directa}
 \end{figure}
 
-\begin{table}[H]
-\centering
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-  \hline
-  $V_1$ [V]   & 0 & 0.1 & 0.3 & 0.4 & 0.45 & 0.5 & 0.55 & 0.6 & 0.65 & 0.7 & 1 & 3 & 5 \\
-  \hline
-  $V_D$ [V]   & 0 & 0.19 & 0.24 & 0.31 & 0.47 & 0.48 & 0.50 & 0.52  & 0.56 & 0.57 & 0.65 & 0.67 &\\
-  \hline
-  $I_D$ [mA]  & 0 & 0 & 0 & 0 &  0.03 & 0.05 & 0.12 & 0.13 & 0.15 & 0.51 & 2.4 & 4.37  &   \\
-  \hline
-\end{tabular}
-\caption{Datos obtenidos en el diodo 1N4007}
-\label{tab:diodo-datos}
-\end{table}
 
 \begin{table}[H]
 \centering
@@ -270,19 +256,103 @@
   \hline
   $V_1$ [V]   & 0 & 0.1 & 0.3 & 0.4 & 0.45 & 0.5 & 0.55 & 0.6 & 0.65 & 0.7 & 1 & 3 & 5 \\
   \hline
-  $V_D$ [V]   & 0 & 0.11 & 0.16 & 0.19 & 0.20 & 0.21 & 0.24 & 0.24 & 0.26 & 0.28 & 0.49 & 0.65 &\\
+  $V_D$ [V]   & 0 & 0.04 & 0.19 & 0.24 & 0.31 & 0.47 & 0.48 & 0.50 & 0.52 & 0.56 & 0.57 & 0.65 & 0.67 \\
   \hline
-  $I_D$ [mA]  & 0 & 0.04 & 0.14 & 0.24 &  0.29 & 0.34 & 0.38 & 0.40 & 0.43 & 0.71 & 2.53 & 4.45 &\\
+  $I_D$ [mA]  & 0 & 0 & 0 & 0 & 0 & 0.03 & 0.05 & 0.12 & 0.13 & 0.15 & 0.51 & 2.4  & 4.37      \\
   \hline
 \end{tabular}
-\caption{Datos obtenidos en el diodo 1N60}
+\caption{Datos corregidos obtenidos en el diodo 1N4007}
+\label{tab:diodo-1n4007}
+\end{table}
+
+\vspace{1cm}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+  \hline
+  $V_1$ [V]   & 0 & 0.1 & 0.3 & 0.4 & 0.45 & 0.5 & 0.55 & 0.6 & 0.65 & 0.7 & 1 & 3 & 5 \\
+  \hline
+  $V_D$ [V]   & 0 & 0.10 & 0.11 & 0.16 & 0.19 & 0.20 & 0.21 & 0.24 & 0.24 & 0.26 & 0.28 & 0.49 & 0.65 \\
+  \hline
+  $I_D$ [mA]  & 0 & 0.03 & 0.04 & 0.14 & 0.24 & 0.29 & 0.34 & 0.38 & 0.40 & 0.43 & 0.71 & 2.53 & 4.45 \\
+  \hline
+\end{tabular}
+\caption{Datos corregidos obtenidos en el diodo 1N60}
 \label{tab:diodo-datos}
 \end{table}
 
-\subsection{Conclusiones}
+% Gráficos
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[
+    width=12cm, height=8cm,
+    xlabel={Voltaje $V_D$ [V]},
+    ylabel={Corriente $I_D$ [mA]},
+    xmin=0, xmax=1,
+    ymin=0, ymax=1,
+    grid=major,
+    legend pos=north west,
+    title={Corriente vs Voltaje (0 a 1 V)}
+  ]
+
+  % Diodo 1N4007
+  \addplot[color=blue,mark=*] coordinates {
+    (0,0) (0.04,0) (0.19,0) (0.24,0) (0.31,0) (0.47,0.03) (0.48,0.05) (0.50,0.12) (0.52,0.13) (0.56,0.15) (0.57,0.51)
+  };
+  \addlegendentry{Diodo 1N4007}
+
+  % Diodo 1N60
+  \addplot[color=red,mark=square*] coordinates {
+    (0,0) (0.10,0.03) (0.11,0.04) (0.16,0.14) (0.19,0.24) (0.20,0.29) (0.21,0.34) (0.24,0.38) (0.24,0.40) (0.26,0.43) (0.28,0.71)
+  };
+  \addlegendentry{Diodo 1N60}
+
+  \end{axis}
+\end{tikzpicture}
+\caption{Corriente en función del voltaje para voltajes hasta 1 V.}
+\label{fig:IV_1V}
+\end{figure}
+
+\vspace{1cm}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+  \begin{axis}[
+    width=12cm, height=8cm,
+    xlabel={Voltaje $V_D$ [V]},
+    ylabel={Corriente $I_D$ [mA]},
+    xmin=0, xmax=0.7,
+    ymin=0, ymax=5,
+    grid=major,
+    legend pos=north west,
+    title={Corriente vs Voltaje (0 a 5 V)}
+  ]
+
+  % Diodo 1N4007
+  \addplot[color=blue,mark=*] coordinates {
+    (0,0) (0.04,0) (0.19,0) (0.24,0) (0.31,0) (0.47,0.03) (0.48,0.05) (0.50,0.12) (0.52,0.13) (0.56,0.15) (0.57,0.51) (0.65,2.4) (0.67,4.37)
+  };
+  \addlegendentry{Diodo 1N4007}
+
+  % Diodo 1N60
+  \addplot[color=red,mark=square*] coordinates {
+    (0,0) (0.10,0.03) (0.11,0.04) (0.16,0.14) (0.19,0.24) (0.20,0.29) (0.21,0.34) (0.24,0.38) (0.24,0.40) (0.26,0.43) (0.28,0.71) (0.49,2.53) (0.65,4.45)
+  };
+  \addlegendentry{Diodo 1N60}
+
+  \end{axis}
+\end{tikzpicture}
+\caption{Corriente en función del voltaje para voltajes hasta 5 V.}
+\label{fig:IV_5V}
+\end{figure}
+
+% Conclusiones
+\section{Conclusión}
 
 \begin{itemize}
-  
   \item La curva característica de los diodos medidos evidencia el comportamiento esperado: una región de conducción en polarización directa donde la corriente aumenta exponencialmente con la tensión, y una región de bloqueo en polarización inversa donde la corriente es prácticamente nula.
 
   \item Se observa que, en polarización directa, los diodos de silicio presentan una tensión de umbral en torno a $(0.6\,\text{V} - 0.7\,\text{V})$, mientras que los de germanio comienzan a conducir con tensiones más bajas, cercanas a $(0.3\,\text{V})$.
@@ -290,5 +360,4 @@
   \item En polarización inversa, ningún diodo alcanzó su tensión de ruptura durante el experimento, por lo que se mantuvieron en régimen de corte como se esperaba en condiciones normales.
 
   \item Las curvas obtenidas permiten comparar el comportamiento entre distintos tipos de diodos y comprobar experimentalmente los efectos de la temperatura sobre su funcionamiento, reforzando los conceptos teóricos vistos en clase.
-
 \end{itemize}
