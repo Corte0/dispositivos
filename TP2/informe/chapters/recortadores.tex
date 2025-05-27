@@ -4,6 +4,7 @@
 
 \section{Actividad de simulación}
 
+\noindent
 \begin{minipage}[t]{0.45 \textwidth}
   \begin{figure}[H]
     \centering
@@ -12,11 +13,10 @@
       \draw (0,0) to[sV, l_=$24\,\mathrm{V_{ca}}$] (0,4);
 
       % Línea horizontal inferior
-      \draw (0,0) to[short, o-] (6,0);
+      \draw (0,0) to[short, -o] (6,0);
 
       % Resistencia en la parte superior
-      \draw (0,4) to[short,-o] (0.1,4)
-        to[R,l=R,name=R1] (3,4)
+      \draw (0,4) to[R,l=R,name=R1] (3,4)
         to[short,-o] (6,4);
 
       % Diodos zener
@@ -25,11 +25,13 @@
 
       % Etiquetas de voltaje
       \node at ($(6,0)!0.5!(6,4)$) []{$v_{out}$};
+      \node at ($(-0.8,0)!0.5!(-0.8,4)$) []{$v_{in}$};
 
     \end{circuitikz}
     \caption{Circuito 1}
   \end{figure}
 \end{minipage}
+\hfill
 \begin{minipage}[t]{0.45 \textwidth}
   \begin{figure}[H]
     \centering
@@ -38,11 +40,10 @@
       \draw (0,0) to[sV, l_=$24\,\mathrm{V_{ca}}$] (0,4);
 
       % Línea horizontal inferior
-      \draw (0,0) to[short, o-] (6,0);
+      \draw (0,0) to[short, -o] (6,0);
 
       % Resistencia en la parte superior
-      \draw (0,4) to[short,-o] (0.1,4)
-        to[R,l=R,name=R1] (3,4)
+      \draw (0,4) to[R,l=R,name=R1] (3,4)
         to[short,-o] (6,4);
 
       % Diodos zener
@@ -51,6 +52,7 @@
 
       % Etiquetas de voltaje
       \node at ($(6,0)!0.5!(6,4)$) []{$v_{out}$};
+      \node at ($(-0.8,0)!0.5!(-0.8,4)$) []{$v_{in}$};
 
     \end{circuitikz}
     \caption{Circuito 2}
