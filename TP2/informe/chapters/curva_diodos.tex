@@ -25,7 +25,6 @@
             ylabel={$I$ [mA]},
             grid=both,
             minor tick num=1,
-            extra x ticks={0.7},
             extra x tick style={
               grid style={red, thick, dashed},
               tick style={red},
@@ -41,9 +40,9 @@
         ] table[
             col sep=tab,
             header=true,
-            x=V1,
+            x=V(vd1),
             y expr=\thisrow{I(D1)}*1000
-        ] {tables/1N4007Directa.txt};
+        ] {tables/directa/1N4007.txt};
         \end{axis}
     \end{tikzpicture}
     \caption{Curva del diodo 1N4007 en directa, obtenida por simulación.}
@@ -65,7 +64,6 @@
             ylabel={$I$ [mA]},
             grid=both,
             minor tick num=1,
-            extra x ticks={0.3},
             extra x tick style={
               grid style={red, thick, dashed},
               tick style={red},
@@ -81,9 +79,9 @@
         ] table[
             col sep=tab,
             header=true,
-            x=V1,
+            x=V(vd1),
             y expr=\thisrow{I(D1)}*1000
-        ] {tables/1N60Directa.txt};
+        ] {tables/directa/1N60.txt};
         \end{axis}
     \end{tikzpicture}
     \caption{Curva del diodo 1N60 en directa, obtenida por simulación.}
@@ -105,14 +103,13 @@
             ylabel={$I$ [mA]},
             grid=both,
             minor tick num=1,
-            extra x ticks={0.3, 0.7},
+            restrict x to domain=-1:4,
             extra x tick style={
               grid style={red, thick, dashed},
               tick style={red},
               tick label style={red}
              },
             scaled ticks=false,
-            restrict x to domain=-1:4,
             legend pos=north west,
         ]
         \addplot[
@@ -122,20 +119,20 @@
         ] table[
             col sep=tab,
             header=true,
-            x=V1,
+            x=V(vd1),
             y expr=\thisrow{I(D1)}*1000
-        ] {tables/1N60Directa.txt};
+        ] {tables/directa/1N60.txt};
         \addlegendentry{1N60}
         \addplot[
-            color=green,
+            color=red,
             mark=none,
             thick,
         ] table[
             col sep=tab,
             header=true,
-            x=V1,
+            x=V(vd1),
             y expr=\thisrow{I(D1)}*1000
-        ] {tables/1N4007Directa.txt};
+        ] {tables/directa/1N4007.txt};
         \addlegendentry{1N4007}
         \end{axis}
     \end{tikzpicture}
@@ -164,9 +161,9 @@
         ] table[
             col sep=tab,
             header=true,
-            x expr=\thisrow{V1}/1000,
+            x expr=\thisrow{V(vd1)}/1000,
             y expr=\thisrow{I(D1)}*1000
-        ] {tables/1N4007Inversa.txt};
+        ] {tables/inversa/1N4007.txt};
         \end{axis}
     \end{tikzpicture}
     \caption{Curva del diodo 1N4007 en inversa, obtenida por simulación.}
@@ -200,7 +197,7 @@
             header=true,
             x = V1,
             y expr=\thisrow{I(D1)}*1000
-        ] {tables/1N60Inversa.txt};
+        ] {tables/inversa/1N60.txt};
         \end{axis}
     \end{tikzpicture}
     \caption{Curva del diodo 1N60 en inversa, obtenida por simulación.}
