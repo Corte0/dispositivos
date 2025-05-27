@@ -72,7 +72,8 @@
       minor tick num=1,
       scaled ticks=false,
       xmax=40, xmin=0,
-      extra y ticks={-5.1, 20},
+      ytick={-40, -30,-10, -20, 0, 10, 30, 40},
+      extra y ticks={-5.8, 20.7},
       extra y tick style={
         grid style={darkgray, dashed, opacity=0.8},
         tick style={darkgray},
@@ -126,7 +127,7 @@ SINE(0 33.9411 50)
       minor tick num=1,
       scaled ticks=false,
       xmax=40, xmin=0,
-      extra y ticks={-12, 6.8},
+      extra y ticks={-12.7, 7.5},
       extra y tick style={
         grid style={darkgray, dashed, opacity=0.8},
         tick style={darkgray},
@@ -168,6 +169,21 @@ SINE(0 33.9411 50)
 .model CDZV12B D(Is=3.4990E-16 N=1.0420 Rs=.26313 Ikf=.87303 Cjo=1.3700E-11 M=.35603 Vj=.75124 Isr=5.1535E-13 Nr=2.8200 Bv=11.930 Ibv=1.0000E-3 Tt=1.8500E-7 Nbv=0.4000 Tbv1=0.7300E-3 Nbvl=26.200 Ibvl=1.0000E-11 Vpk=12 mfg=Rohm type=Zener)
 \end{lstlisting}
 
+El comportamiento observado en la simulación de los circuitos resulta coherente con el funcionamiento
+esperado. En particular, se puede observar que la señal de salida es recortada en ambos semiciclos,
+lo cual concuerda con el valor de umbral determinado por la configuración de los diodos.
+
+En cada semiciclo de la señal de entrada, la tensión de recorte es igual a la suma de la caída de tensión del diodo en directa 
+aproximadamente $0{,}7\,\text{V}$) más la tensión de ruptura del diodo Zener en inversa ($V_Z$). Por lo tanto, el valor de recorte
+observado en la simulación es:
+
+\[
+V_{\text{recorte}} = V_Z + 0{,}7\,\text{V}
+\]
+
+Esta relación se cumple tanto para el semiciclo positivo como para el negativo, gracias a la disposición simétrica de los diodos en el
+circuito.
+
 \section{Actividad de laboratorio}
 
 \begin{figure}[H]
@@ -191,6 +207,7 @@ SINE(0 33.9411 50)
     \centering
     \includegraphics[width=\textwidth]{images/salida1.png}
     \caption{Visualizacion en osciloscopio la salida del circuito 1}
+    \label{fig:osc1}
   \end{minipage}
   \hfill
   \begin{minipage}[t]{0.48\textwidth}
@@ -200,9 +217,19 @@ SINE(0 33.9411 50)
   \end{minipage}
 \end{figure}
 
-Para obtener una mejor visualización, configuramos la punta de medición en valor x10 y la escala de tensión vertical en 1V por segmento, por lo que cadan segmento vertical del osciloscopio representa 10V de tensión, podemos observar como en la $ Figura$ $5.7$, la señal posee 2 segmentos partiendo desde el eje x (GND), lo que nos indica un valor de tensión aproximado de +20V. En el semi eje negativo de tensión observamos que la señal toma un valor de medio segmento, aproximadamente -5V de tensión aproximado.
+Para obtener una mejor visualización, configuramos la punta de medición en valor x10 y la escala de tensión vertical en 1V por segmento,
+por lo que cadan segmento vertical del osciloscopio representa 10V de tensión, podemos observar como en la Figura \ref{fig:osc1}, la señal posee
+2 segmentos partiendo desde el eje x (GND), lo que nos indica un valor de tensión aproximado de +20V. En el semi eje negativo de tensión
+observamos que la señal toma un valor de medio segmento, aproximadamente -5V de tensión aproximado.
 
-Para el segundo circuito, reconfiguramos los parametros de visualización del osciloscopio, colocando la escala de tensión vertical en 0.5, por lo que cada segmento representa 5V de tensión. Una vez realizada dicha aclaración podemos observar como la señal abarca 1 segmento completo y aproximadamente 1/5 del segundo segmento, lo que nos representa un valor de tensión de 7V (valor aproximado al 6.8V obtenido en la simulación) con respecto del eje horizontal, en el semieje horizontal inferior observamos que cada semicilo negativo de la señal corresponde con 2 segmentos y 3 subdivisiones, aproximadamente -12V de tensión (nuevamente los datos obtenidos en laboratorio coinciden con aquellos simulados previamente).
+Para el segundo circuito, reconfiguramos los parametros de visualización del osciloscopio, colocando la escala de tensión vertical en 0.5,
+por lo que cada segmento representa 5V de tensión. Una vez realizada dicha aclaración podemos observar como la señal abarca 1 segmento
+completo y aproximadamente 1/5 del segundo segmento, lo que nos representa un valor de tensión de 7V  con respecto del eje horizontal, en
+el semieje horizontal inferior observamos que cada semicilo negativo de la señal corresponde con 2 segmentos y 3 subdivisiones,
+aproximadamente -12V de tensión (nuevamente los datos obtenidos en laboratorio coinciden con aquellos simulados previamente).
 
 \section{Conclusión}
-A lo largo de esta actividad, se pudo comprobar el correcto funcionamiento de los circuitos recortadores con diodos Zener, tanto mediante simulación como en la práctica. Los resultados obtenidos en el osciloscopio coinciden con los límites de tensión impuestos por los diodos utilizados, lo cual valida el comportamiento esperado de estos dispositivos en configuraciones de recorte.
+
+A lo largo de esta actividad, se pudo comprobar el correcto funcionamiento de los circuitos recortadores con diodos Zener, tanto mediante
+simulación como en la práctica. Los resultados obtenidos en el osciloscopio coinciden con los límites de tensión impuestos por los diodos
+utilizados, lo cual valida el comportamiento esperado de estos dispositivos en configuraciones de recorte.
