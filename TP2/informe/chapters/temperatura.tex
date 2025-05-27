@@ -21,9 +21,9 @@
         ] table[
             col sep=tab,
             header=true,
-            x=V1,
+            x=V(vd1),
             y expr=\thisrow{I(D1)}*1000
-        ] {tables/1N3198T20C.txt};
+        ] {tables/temperatura/20C.txt};
         \addlegendentry{$20^o C$}
         \addplot[
             color=red,
@@ -32,9 +32,9 @@
         ] table[
             col sep=tab,
             header=true,
-            x=V1,
+            x=V(vd1),
             y expr=\thisrow{I(D1)}*1000
-        ] {tables/1N3198T100C.txt};
+        ] {tables/temperatura/100C.txt};
         \addlegendentry{$100^o C$}
         \addplot[
             color=green,
@@ -43,9 +43,9 @@
         ] table[
             col sep=tab,
             header=true,
-            x=V1,
+            x=V(vd1),
             y expr=\thisrow{I(D1)}*1000
-        ] {tables/1N3198T125C.txt};
+        ] {tables/temperatura/125C.txt};
         \addlegendentry{$125^o C$}
         \end{axis}
     \end{tikzpicture}
