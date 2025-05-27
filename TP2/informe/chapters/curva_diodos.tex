@@ -1,5 +1,11 @@
 \chapter{Curva caracteristica de los diodos}
 
+En esta sección del trabajo se llevó a cabo la simulación de circuitos básicos con diodos semiconductores, tanto en polarización directa
+como inversa, con el objetivo de analizar su comportamiento eléctrico y obtener la curva característica corriente–tensión (I–V). La
+simulación permite observar con precisión el funcionamiento idealizado del componente, sin las limitaciones experimentales propias del
+laboratorio, y sirve como referencia para contrastar los resultados de la posterior actividad de laboratorio. Las simulacines se
+realizaron en el software LTSpice. Los archivos de simulación son accesibles a partir del link en \ref{con:simulaciones}
+
 \begin{figure}[H]
   \centering
   \begin{circuitikz} [circuitikz/diodes/scale=0.7]
@@ -11,6 +17,7 @@
     \node at ($(V1.center) + (0.8,0)$)[] {V1};
   \end{circuitikz}
   \caption{Circuito básico del diodo polarizado en directa}
+  \label{fig:circuitoDiodo}
 \end{figure}
 
 \section{Polarizacion en directa}
@@ -211,6 +218,13 @@
 
 \section{Actividad de laboratorio}
 
+Posteriormente, se realizó la medición experimental de la curva característica del diodo, enfocándose en la región de conducción directa.
+Esta decisión se fundamenta en la dificultad de alcanzar valores de tensión elevados en polarización inversa con los
+instrumentos disponibles en el laboratorio. Para ello, se utilizaron varios multímetros y una fuente de alimentación regulable, armando el
+circuito de la figura \ref{fig:circuitoMediciones} y midiendo la tensión y corriente a distintos puntos de operación. A partir de estos datos,
+se buscó reconstruir gráficamente la curva I–V en directa, con el fin de comparar el comportamiento real del diodo con el modelo ideal
+simulado.
+
 \begin{figure}[H]
   \centering
   \begin{circuitikz} [circuitikz/diodes/scale=0.7]
@@ -232,6 +246,7 @@
     \node at ($(V1.center) + (0.8,0)$)[] {V1};
   \end{circuitikz}
   \caption{Circuito con amperimetro y voltimeros para realizar las mediciones}
+  \label{fig:circuitoMediciones}
 \end{figure}
 
 \begin{figure}[H]
