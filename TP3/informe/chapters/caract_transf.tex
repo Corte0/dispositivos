@@ -80,6 +80,42 @@ coordinates {
 \caption{Gráfico de $I_C$ vs. $I_B$ para $V_{CE}=2\,\text{V}$.}
 \end{figure}
 
+\section{Cálculo de la ganancia de corriente $\beta$}
+
+A partir de los valores experimentales medidos para la corriente de base $I_B$ (en \si{\micro\ampere}) y la corriente de colector $I_C$ (en \si{\milli\ampere}), se puede calcular la ganancia de corriente continua $\beta$ utilizando la siguiente expresión:
+
+\[
+\beta = \frac{I_C}{I_B}
+\]
+
+\begin{itemize}
+    \item Para $I_B = 5\,\si{\micro\ampere}$, $I_C = 0.90\,\si{\milli\ampere}$:
+    \[
+    \beta = \frac{0.90\,\si{\milli\ampere}}{5 \times 10^{-3}\,\si{\milli\ampere}} = 180
+    \]
+
+    \item Para $I_B = 7\,\si{\micro\ampere}$, $I_C = 1.46\,\si{\milli\ampere}$:
+    \[
+    \beta = \frac{1.46\,\si{\milli\ampere}}{7 \times 10^{-3}\,\si{\milli\ampere}} \approx 208.57
+    \]
+
+    \item Para $I_B = 10\,\si{\micro\ampere}$, $I_C = 2.26\,\si{\milli\ampere}$:
+    \[
+    \beta = \frac{2.26\,\si{\milli\ampere}}{10 \times 10^{-3}\,\si{\milli\ampere}} = 226
+    \]
+
+    \item Para $I_B = 20\,\si{\micro\ampere}$, $I_C = 5.00\,\si{\milli\ampere}$:
+    \[
+    \beta = \frac{5.00\,\si{\milli\ampere}}{20 \times 10^{-3}\,\si{\milli\ampere}} = 250
+    \]
+\end{itemize}
+
+\noindent
+Los valores calculados de $\beta$ muestran una tendencia creciente con el aumento de $I_B$, lo cual es esperable en muchos transistores reales. A bajas corrientes, la ganancia tiende a ser menor, estabilizándose o aumentando moderadamente a medida que $I_B$ crece.
+
+
+
+
 \section{Conclusión}
 
 A partir de los datos relevados en la tabla, se observa una clara relación lineal entre la corriente de base $I_B$ y la corriente de colector $I_C$, lo cual es característico del funcionamiento del transistor en la región activa. Esta linealidad permite afirmar que el transistor presenta un comportamiento predecible, donde la corriente de colector depende directamente de la corriente de base, multiplicada por un factor de ganancia de corriente continua $\beta$.
