@@ -1,4 +1,4 @@
-\documentclass{informeutn}
+\documentclass[]{informeutn}
 
 \usepackage{array}
 \usepackage{circuitikz}
@@ -6,6 +6,20 @@
 \usepackage{multirow}
 \usepackage{pgfplots}
 \usepackage{listings}
+
+\lstdefinestyle{ltspice}{
+  backgroundcolor=\color{gray!10},
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{green!50!black},
+  stringstyle=\color{orange},
+  frame=single,
+  breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+  columns=flexible,
+  captionpos=b
+}
+\renewcommand{\lstlistingname}{Listado}
 
 \materia{Dispositivos Electrónicos}
 \titulo{Trabajo Práctico N°3}
@@ -25,7 +39,7 @@
 \input{chapters/trans_corte.tex}
 \input{chapters/polar_juntura_be.tex}
 \input{chapters/curvas_carac.tex}
-\input{chapters/carac_transf.tex}
+\input{chapters/caract_transf.tex}
 \input{chapters/interpretacion_datasheet.tex}
 \input{chapters/conclusiones.tex}
 

@@ -1,11 +1,26 @@
-\section{Polarización de la juntura BE}
-En cualquiera de las aplicaciones en las que se usa el transistor, sea como amplificador o
-dispositivo de conmutación, se requiere la polarización en directa de la juntura base-emisor.
+\chapter{Polarización de la juntura BE}
+
+En cualquiera de las aplicaciones en las que se usa el transistor, sea como amplificador o dispositivo de conmutación, se requiere la polarización en directa de la juntura base-emisor.
 En esta parte del práctico se propuso caracterizar el comportamiento de la juntura en cuestión.
 
-\subsection{Actividad de laboratorio}
+\section{Actividad de laboratorio}
 
-\begin{table}[h!]
+\begin{figure}[H]
+  \centering
+  \begin{minipage}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/implementacion.jpg}
+    \caption*{Implementacion del circuito}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/punto_1.jpg}
+    \caption*{Realizacion de mediciones}
+  \end{minipage}
+\end{figure}
+
+\begin{table}[H]
 \centering
 \begin{tabular}{|c|c|c|c|c|c|c|}
 \hline
@@ -19,7 +34,7 @@ $V_{BE}$ (mV) & 430 & 540 & 640 & 670 & 690 & 740 \\
 \caption{Ejemplo de la tabla a confeccionar.}
 \end{table}
 
-\begin{figure}[h!]
+\begin{figure}[H]
 \centering
 \begin{tikzpicture}
 \begin{axis}[
@@ -59,12 +74,11 @@ coordinates {
 \caption{Gráfica de $I_B$ en función de $V_{BE}$ con separación equidistante en el eje horizontal.}
 \end{figure}
 
-/////////
-insertar imágenes y la conclusión
-///////
+\section{Conclusión}
 
+A medida que se incrementa la tensión $V_{BB}$, se observa un aumento progresivo tanto de la corriente de base $I_{B}$ como de la tensión $V_{BE}$. Este comportamiento es coherente con el funcionamiento de la juntura base-emisor del transistor en polarización directa. El valor de $V_{BE}$ comienza en torno a los 430 $mV$ cuando $V_{BB}$ es 0,5 $V$, y se estabiliza en el rango de 670 a 740 $mV$ al alcanzar niveles más altos de polarización, indicando que el transistor pasa de la región de corte a la región activa.
 
-\subsection{Conclusión}
-
+A partir de cierto valor de $V_{BB}$, se incrementa significativamente la corriente $I_B$, y con ella se habilita también el flujo de corriente por el colector $I_C$, entrando el transistor en zona activa. Esto implica que comienza a circular una corriente considerable por el resistor $R_C$, incrementando su disipación de potencia. Este fenómeno es importante porque, aunque el foco del trabajo esté en la juntura base-emisor, al alcanzar corrientes altas también se activa la conducción en el colector, y con ella la disipación de potencia tanto en el transistor como en $R_C$. Es fundamental entonces verificar que esta potencia no supere los límites máximos recomendados para evitar daños térmicos.
 
 \newpage
+
