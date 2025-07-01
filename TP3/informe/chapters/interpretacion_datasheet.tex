@@ -17,29 +17,56 @@ Relevar los siguientes parámetros en cada uno y explicar el significado de los 
     
 Características eléctricas a 25$°C$
         \begin{itemize}
-            \item $V_{(BR)CEO}$
-            \item $I_{CEO}$
-            \item $I_{CES}$
-            \item $I_C$
-            \item $I_{EBO}$
-            \item $h_{FE}$
-            \item $h_{fe}$
-            \item $V_{BE}$
-            \item $V_{CE(\text{sat})}$
-            \item $P_d$
+            \item $V_{(BR)CEO}$: Tensión de ruptura colector-emisor
+            \item $I_{CEO}$: Corriente de fuga colector-emisor con base abierta
+            \item $I_{CES}$: Corriente de fuga colector-emisor con base unida al emisor
+            \item $I_C$: Corriente maxima de colector
+            \item $I_{EBO}$: Corriente de fuga emisor-base
+            \item $h_{FE}$: Ganancia de corriente (DC)
+            \item $h_{fe}$: Ganancia de corriente (AC)
+            \item $V_{BE}$: Tensión base-emisor
+            \item $V_{CE(\text{sat})}$: Saturación colector-emisor
+            \item $P_d$: Potencia disipada
         \end{itemize}
 
 Características térmicas:
 
         \begin{itemize}
-            \item $\theta_{jc}$
-            \item $\theta_{ja}$
+            \item $\theta_{jc}$: Resistencia térmica unión-colector
+            \item $\theta_{ja}$: Resistencia térmica unión-ambiente
         \end{itemize}
 
 Características de conmutación a 25$°C$:
         
         \begin{itemize}
-            \item $t_{on}$
+            \item $t_{on}$: Tiempo de encendido (turn-on time)
         \end{itemize}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|c|c|c|c|c|c|}
+\hline
+\textbf{Parámetro} & \textbf{BC548} & \textbf{BC557} & \textbf{2N2222} & \textbf{BU208} & \textbf{MPS6514} & \textbf{TIP36} \\
+\hline
+$V_{(BR)CEO}$ [V] & 30 & -45 & 30 & 700 & 25 & -40 \\
+$I_{CEO}$ [mA] & - & - & - & - & - &  -1 \\
+$I_{CES}$ [nA] & 0,2 & -2 & - & $<$1[mA] & - & -0,7[mA]\\
+$I_C$ [mA] & 500 & -200 & 800 & 5000 & 200 & -25000 \\
+$I_{EBO}$ [nA] & - & -100 & 10 & - & - & - \\
+$h_{FE}$ & 110-800 & 125-800 & 100-300 & 2,25 & 150-300 & 25-50 \\
+$V_{BE}$ [V] & 0,7 & -0,75 & 1,3 & $<$1,5 & - & -2 \\
+$V_{CE(sat)}$ [V] & 0,25 & -0,06 & 0,4 & $<$5 & 0,5 & -1,8 \\
+$P_d$ [mW] & 625 & 500 & 500 & 12500 & 625 & 35000 \\
+$\theta_{jc}$ [$^\circ$C/W] & 83,3 & 83,3 & 146[$^\circ$K/W] & $<$1,6[$^\circ$K/W] & 83,3 & 1 \\
+$\theta_{ja}$ [$^\circ$C/W] & 200 & 200 & 350[$^\circ$K/W] & - & 200 & 35,7 \\
+$t_{on}$ [ns] & - & - & 35 & 10000 & - & 1100\\
+\hline
+\end{tabular}
+\caption{Características eléctricas, térmicas y de conmutación de transistores BJT}
+\label{tab:transistores}
+\end{table}
+
 
 \newpage
