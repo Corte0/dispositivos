@@ -39,6 +39,46 @@ $I_B$ [$\mu$A] & $I_C$ (@$V_{CE(inicial)}$ = 2V) & $I_C$ (@$V_{CE(inicial)}$ = 5
 \end{tabular}
 \caption{Tabla confeccionada.}
 \end{table}
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    title={$I_C$ en función de $I_B$ para $V_{CE} = 2\,\text{V}$},
+    xlabel={$I_B$ [\si{\micro\ampere}]},
+    ylabel={$I_C$ [\si{\milli\ampere}]},
+    grid=both,
+    xmin=0, xmax=22,
+    ymin=0, ymax=5.5,
+    width=10cm,
+    height=7cm,
+    legend pos=north west,
+    samples=100
+]
+\addplot[
+    color=blue,
+    mark=*,
+    only marks
+]
+coordinates {
+    (5, 0.90)
+    (7, 1.46)
+    (10, 2.26)
+    (20, 5.00)
+};
+\addlegendentry{Datos experimentales}
+
+\addplot[
+    color=blue,
+    domain=0:22,
+    dashed
+]
+{0.25*x};
+\addlegendentry{Aproximación lineal ($\beta \approx 250$)}
+
+\end{axis}
+\end{tikzpicture}
+\caption{Gráfico de $I_C$ vs. $I_B$ para $V_{CE}=2\,\text{V}$.}
+\end{figure}
 
 \section{Conclusión}
 
