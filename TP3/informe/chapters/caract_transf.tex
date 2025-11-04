@@ -1,5 +1,13 @@
 \chapter{Características de transferencia de corriente}
 
+En esta sección se nos encomendó analizar las características de transferencia de corriente de un transistor bipolar de unión (BJT), enfocándose particularmente en la ganancia de corriente continua, comúnmente representada por el parámetro $\beta$. Esta ganancia se define como la relación entre la corriente de colector $I_C$ y la corriente de base $I_B$, y es un parámetro fundamental para el análisis y diseño de circuitos con transistores.
+
+Si bien $\beta$ es un valor característico del dispositivo, su magnitud puede variar significativamente en función del fabricante, la temperatura de operación y la región activa del transistor. Por esta razón, es importante realizar una caracterización experimental que permita verificar el comportamiento real del dispositivo bajo distintas condiciones.
+
+En esta práctica se propondrá un procedimiento tanto de simulación como de implementación en laboratorio, mediante el cual se observará la relación entre $I_C$ e $I_B$ para distintos valores de tensión de colector $V_{CE}$. De esta manera, será posible determinar si la ganancia de corriente se mantiene constante en diferentes regiones de operación y obtener, a partir de mediciones directas, los valores de $\beta$ correspondientes.
+
+A través del análisis de las curvas $I_C = f(I_B)$, se buscará comprender con mayor profundidad el funcionamiento del transistor en configuración emisor común, así como validar las especificaciones proporcionadas por el fabricante en la hoja de datos.
+
 \section{Actividad de laboratorio}
 
 \begin{figure}[H]
@@ -31,7 +39,89 @@ $I_B$ [$\mu$A] & $I_C$ (@$V_{CE(inicial)}$ = 2V) & $I_C$ (@$V_{CE(inicial)}$ = 5
 \end{tabular}
 \caption{Tabla confeccionada.}
 \end{table}
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    title={$I_C$ en función de $I_B$ para $V_{CE} = 2\,\text{V}$},
+    xlabel={$I_B$ [\si{\micro\ampere}]},
+    ylabel={$I_C$ [\si{\milli\ampere}]},
+    grid=both,
+    xmin=0, xmax=22,
+    ymin=0, ymax=5.5,
+    width=10cm,
+    height=7cm,
+    legend pos=north west,
+    samples=100
+]
+\addplot[
+    color=blue,
+    mark=*,
+    only marks
+]
+coordinates {
+    (5, 0.90)
+    (7, 1.46)
+    (10, 2.26)
+    (20, 5.00)
+};
+\addlegendentry{Datos experimentales}
+
+\addplot[
+    color=blue,
+    domain=0:22,
+    dashed
+]
+{0.25*x};
+\addlegendentry{Aproximación lineal ($\beta \approx 250$)}
+
+\end{axis}
+\end{tikzpicture}
+\caption{Gráfico de $I_C$ vs. $I_B$ para $V_{CE}=2\,\text{V}$.}
+\end{figure}
+
+\section{Cálculo de la ganancia de corriente $\beta$}
+
+A partir de los valores experimentales medidos para la corriente de base $I_B$ (en \si{\micro\ampere}) y la corriente de colector $I_C$ (en \si{\milli\ampere}), se puede calcular la ganancia de corriente continua $\beta$ utilizando la siguiente expresión:
+
+\[
+\beta = \frac{I_C}{I_B}
+\]
+
+\begin{itemize}
+    \item Para $I_B = 5\,\si{\micro\ampere}$, $I_C = 0.90\,\si{\milli\ampere}$:
+    \[
+    \beta = \frac{0.90\,\si{\milli\ampere}}{5 \times 10^{-3}\,\si{\milli\ampere}} = 180
+    \]
+
+    \item Para $I_B = 7\,\si{\micro\ampere}$, $I_C = 1.46\,\si{\milli\ampere}$:
+    \[
+    \beta = \frac{1.46\,\si{\milli\ampere}}{7 \times 10^{-3}\,\si{\milli\ampere}} \approx 208.57
+    \]
+
+    \item Para $I_B = 10\,\si{\micro\ampere}$, $I_C = 2.26\,\si{\milli\ampere}$:
+    \[
+    \beta = \frac{2.26\,\si{\milli\ampere}}{10 \times 10^{-3}\,\si{\milli\ampere}} = 226
+    \]
+
+    \item Para $I_B = 20\,\si{\micro\ampere}$, $I_C = 5.00\,\si{\milli\ampere}$:
+    \[
+    \beta = \frac{5.00\,\si{\milli\ampere}}{20 \times 10^{-3}\,\si{\milli\ampere}} = 250
+    \]
+\end{itemize}
+
+\noindent
+Los valores calculados de $\beta$ muestran una tendencia creciente con el aumento de $I_B$, lo cual es esperable en muchos transistores reales. A bajas corrientes, la ganancia tiende a ser menor, estabilizándose o aumentando moderadamente a medida que $I_B$ crece.
+
+
+
 
 \section{Conclusión}
+
+A partir de los datos relevados en la tabla, se observa una clara relación lineal entre la corriente de base $I_B$ y la corriente de colector $I_C$, lo cual es característico del funcionamiento del transistor en la región activa. Esta linealidad permite afirmar que el transistor presenta un comportamiento predecible, donde la corriente de colector depende directamente de la corriente de base, multiplicada por un factor de ganancia de corriente continua $\beta$.
+
+Además, puede notarse que, para un mismo valor de $I_B$, la corriente $I_C$ varía muy levemente al modificar la tensión $V_{CE}$ de 2V a 8V. Esta variación es relativamente pequeña, lo que confirma que en dicha región el transistor mantiene una ganancia estable, cumpliendo con el modelo de transistor ideal en configuración emisor común.
+
+Para finalizar, esta experiencia permitió verificar experimentalmente el concepto de ganancia de corriente continua $\beta$, así como la independencia relativa de $I_C$ respecto a $V_{CE}$ dentro de la región activa del transistor. Estos resultados coinciden con lo esperado teóricamente y refuerzan la importancia de caracterizar al transistor en diferentes condiciones de operación.
 
 \newpage

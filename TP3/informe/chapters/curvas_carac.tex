@@ -39,7 +39,7 @@ $V_{CC}$ [V] & \multicolumn{2}{c|}{$I_B=0$} & \multicolumn{2}{c|}{$I_B=10\,\mu$A
 \hline
 0    & 0     &  0     & 20$\mu$A   & 42\,mV & 40$\mu$A & 50\,mV  & 0      &    0   & 0      &    0   \\
 
-0.25 & 0     & 25\,V & 200$\mu$A & 0.46\ mV &        &         &        &       &        &       \\
+0.25 & 0     & 25\,V & 200$\mu$A & 0.46\ mV &    0.325mA    &    50mV     &     0.332mA   &   50mV    &      0.333 mA  & 40mV      \\
 
 0.5  & 0      & 0.5V    & 410$\mu$A & 95\,mV   & 48$\mu$A & 90\,mV  & 550$\mu$A & 90\,mV &   550 $\mu$A     & 80\,mV \\
 
@@ -57,6 +57,22 @@ $V_{CC}$ [V] & \multicolumn{2}{c|}{$I_B=0$} & \multicolumn{2}{c|}{$I_B=10\,\mu$A
 \end{table}
 
 \section{Conclusión}
+
+A partir de las simulaciones realizadas en LTspice y de la implementación práctica del circuito, fue posible obtener las curvas características de salida del transistor NPN para distintos valores de corriente de base $I_B$.
+
+Las curvas $I_C$ vs. $V_{CE}$ obtenidas muestran un comportamiento típico del transistor bipolar:
+
+\begin{itemize}
+    \item Para valores bajos de $V_{CE}$, se observa una zona de saturación, donde el transistor conduce fuertemente pero el aumento de $V_{CE}$ no provoca un incremento significativo en $I_C$.
+    
+    \item A medida que $V_{CE}$ aumenta, se alcanza la región activa, donde $I_C$ se mantiene aproximadamente constante para cada valor de $I_B$. Esto confirma que el transistor regula la corriente de colector de acuerdo con la corriente de base, con una ganancia $\beta$ aproximadamente constante en esta región.
+    
+    \item La relación entre $I_B$ e $I_C$ permite observar cómo se desplazan las curvas hacia arriba conforme aumenta la corriente de base, lo cual es consistente con el modelo de amplificación de corriente del transistor.
+\end{itemize}
+
+Además, se comprobó que el modelo del transistor utilizado en simulación (modelo SPICE del BC548B) representa adecuadamente el comportamiento del dispositivo real en la práctica, mostrando buena correspondencia entre los valores simulados y medidos.
+
+En conclusión, la experiencia permitió comprender visual y cuantitativamente el funcionamiento del transistor en distintas regiones de operación (corte, saturación y activa), así como la dependencia del comportamiento de salida con respecto a la corriente de base. Este análisis es fundamental para el diseño y análisis de amplificadores y conmutadores con transistores bipolares.
 
 \newpage
 
